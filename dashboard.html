@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Smart Student Dashboard</title>
+    <title>Smart Time Management Dashboard</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -60,16 +60,14 @@
     <!-- Sidebar -->
     <aside
         class="w-72 bg-surface-light dark:bg-surface-dark shadow-xl flex flex-col z-30 fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 border-r border-gray-200 dark:border-gray-700">
-        <div class="p-6 flex items-center space-x-3 border-b border-gray-200 dark:border-gray-700">
-            <div
-                class="w-10 h-10 bg-gradient-to-br from-primary to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/30">
-                F</div>
+        <a href="index.html" class="p-6 flex items-center space-x-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 object-contain">
             <div class="flex flex-col">
-                <span class="font-bold text-lg leading-tight text-gray-800 dark:text-white">StudentToolkit</span>
+                <span class="font-bold text-lg leading-tight text-gray-800 dark:text-white">Smart Time Management</span>
                 <span class="text-xs text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-wider">FPT
                     University</span>
             </div>
-        </div>
+        </a>
 
         <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
             <a href="#"
@@ -894,430 +892,865 @@
                 </section>
 
                 <!-- 3. Assignments -->
-                <span class="material-icons-round text-success text-2xl">check_circle</span>
-            </div>
-            <div>
-                <div class="flex items-center gap-2 mb-1">
-                    <span
-                        class="bg-success/10 text-success text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">Normal</span>
-                    <span class="text-gray-400 text-xs font-semibold">• Tiếng Anh
-                        (ENG101)</span>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                    Bài tập ngữ pháp Unit 5</h3>
-                <div class="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span class="flex items-center"><span class="material-icons-round text-sm mr-1">event</span> Thứ 6,
-                        28/04</span>
-                </div>
-            </div>
-        </div>
-        <div class="flex items-center gap-4 pl-16 md:pl-0">
-            <span
-                class="text-success font-bold text-sm flex items-center bg-green-50 dark:bg-green-900/30 px-3 py-1 rounded-lg"><span
-                    class="material-icons-round mr-1 text-base">done</span> Đã nộp</span>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
-
-        <!-- 4. Mood Assistant -->
-        <section id="mood" class="dashboard-section hidden h-[calc(100vh-8rem)]">
-            <div class="flex flex-col lg:flex-row h-full gap-6">
-                <!-- Left Sidebar (Mood History) -->
-                <div
-                    class="w-full lg:w-80 bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col hidden lg:flex">
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-4 text-lg flex items-center">
-                        <span class="material-icons-round text-primary mr-2">history</span> Lịch sử cảm xúc
-                    </h3>
-
-                    <!-- Mood Trend Chart -->
-                    <div class="h-32 mb-4">
-                        <canvas id="moodChart"></canvas>
-                    </div>
-
-                    <div class="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
-                        <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700 pb-4">
-                            <div
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-green-500 ring-4 ring-white dark:ring-gray-800">
-                            </div>
-                            <div class="text-xs text-gray-400 font-bold mb-1">Hôm nay, 10:00</div>
-                            <div
-                                class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 dark:border-green-900/50">
-                                <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Hào hứng 😄</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Hoàn thành bài tập sớm.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700 pb-4">
-                            <div
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-red-400 ring-4 ring-white dark:ring-gray-800">
-                            </div>
-                            <div class="text-xs text-gray-400 font-bold mb-1">Hôm qua, 20:00</div>
-                            <div
-                                class="bg-red-50 dark:bg-red-900/20 p-3 rounded-xl border border-red-100 dark:border-red-900/50">
-                                <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Căng thẳng 😫</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Nhiều deadline dồn dập.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700">
-                            <div
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-400 ring-4 ring-white dark:ring-gray-800">
-                            </div>
-                            <div class="text-xs text-gray-400 font-bold mb-1">24/04</div>
-                            <div
-                                class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl border border-blue-100 dark:border-blue-900/50">
-                                <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Bình thường 🙂</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Smart Suggestions -->
-                    <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase">Gợi ý cho
-                            bạn</p>
-                        <div class="flex gap-2 overflow-x-auto pb-2">
-                            <div
-                                class="min-w-[100px] bg-purple-50 dark:bg-purple-900/20 p-2 rounded-xl text-center cursor-pointer hover:bg-purple-100 transition-colors">
-                                <span class="text-xl">🎵</span>
-                                <p class="text-[10px] font-bold text-purple-700 dark:text-purple-300 mt-1">Lo-fi
-                                    Chill</p>
-                            </div>
-                            <div
-                                class="min-w-[100px] bg-teal-50 dark:bg-teal-900/20 p-2 rounded-xl text-center cursor-pointer hover:bg-teal-100 transition-colors">
-                                <span class="text-xl">🧘</span>
-                                <p class="text-[10px] font-bold text-teal-700 dark:text-teal-300 mt-1">Thở 5p
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Chat Area -->
-                <div
-                    class="flex-1 bg-surface-light dark:bg-surface-dark rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden relative">
-                    <!-- Background Decor -->
+                <section id="assignments" class="dashboard-section hidden h-[calc(100vh-8rem)] flex-col fade-in">
+                    <!-- Header -->
                     <div
-                        class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none">
-                    </div>
-
-                    <!-- Chat Header -->
-                    <div
-                        class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm z-10">
-                        <div class="flex items-center gap-3">
-                            <div class="relative">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
-                                    class="w-10 h-10 rounded-full shadow-md">
+                        class="flex-shrink-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md sticky top-0 z-10 border-b border-orange-100 dark:border-gray-700 px-6 py-4 flex items-center justify-between rounded-t-3xl">
+                        <div class="flex items-center gap-4">
+                            <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white flex items-center gap-2">
+                                <span class="material-icons-round text-primary text-3xl">view_kanban</span>
+                                Deadline Board
+                            </h2>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div id="deadline-view-toggle"
+                                class="hidden sm:flex bg-gray-100 dark:bg-gray-700/50 p-1 rounded-xl border border-gray-200 dark:border-gray-600">
+                                <button data-view="list"
+                                    class="px-3 py-1.5 rounded-lg text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white text-sm font-bold flex items-center gap-1 transition-colors">
+                                    <span class="material-icons-round text-lg">format_list_bulleted</span>
+                                    List
+                                </button>
+                                <button data-view="kanban"
+                                    class="px-3 py-1.5 rounded-lg bg-white dark:bg-gray-600 text-primary dark:text-white shadow-sm text-sm font-bold flex items-center gap-1 transition-all">
+                                    <span class="material-icons-round text-lg">view_kanban</span>
+                                    Kanban
+                                </button>
+                            </div>
+                            <div class="relative hidden lg:block">
                                 <span
-                                    class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                                    class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                                <input
+                                    class="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary w-64 text-gray-700 dark:text-gray-200 placeholder-gray-400"
+                                    placeholder="Search tasks..." type="text" />
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900 dark:text-white">Trợ lý Cảm xúc AI</h3>
-                                <p class="text-xs text-primary font-medium">Luôn lắng nghe bạn</p>
-                            </div>
-                        </div>
-                        <button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><span
-                                class="material-icons-round">more_vert</span></button>
-                    </div>
-
-                    <!-- Messages -->
-                    <div class="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50/50 dark:bg-gray-900/50 custom-scrollbar z-0"
-                        id="chat-messages">
-                        <div class="flex flex-col items-center justify-center py-4">
-                            <span
-                                class="text-xs font-bold text-gray-400 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full">Hôm
-                                nay, 14:30</span>
-                        </div>
-
-                        <div class="flex items-end gap-3">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
-                                class="w-8 h-8 rounded-full mb-2 shadow-sm">
-                            <div
-                                class="bg-white dark:bg-gray-700 p-4 rounded-2xl rounded-bl-none shadow-sm max-w-[80%] text-sm text-gray-700 dark:text-gray-200 leading-relaxed border border-gray-100 dark:border-gray-600">
-                                Chào Minh Nhật! 👋 Mình thấy lịch học hôm nay của cậu khá dày. Cậu cảm thấy thế
-                                nào? Có cần mình giúp gì không?
-                            </div>
-                        </div>
-
-                        <div class="flex items-end gap-3 flex-row-reverse">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvCI3SrwCoYcJiYTZ4AGbPtBMepDpZLrtzqykoCdWCqN1xuXEiubqXcohcWyIUY0DRj3jHR-6RDQGkYTSn2Joqx-axTn1dGWar50otjVgUfzkWKtvKPFjVq7zlTaQTY5Ml_fIJPLPJ7hDuNY2uKHatA_7G3pmnyLHAV7j8kNmfYGk1dZawp01wb93o_7XTybip7-c4Cb4bmOyuOV5sqQn7s0xvWLbsQK79sOoI9ei1K0BAzSTe77mDizmgU0bmgS-o_DUJMACXNEg"
-                                class="w-8 h-8 rounded-full mb-2 shadow-sm">
-                            <div
-                                class="bg-primary text-white p-4 rounded-2xl rounded-br-none shadow-md max-w-[80%] text-sm leading-relaxed">
-                                Mình thấy hơi áp lực vì deadline môn Toán sắp đến hạn. 😥
-                            </div>
-                        </div>
-
-                        <div class="flex items-end gap-3">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
-                                class="w-8 h-8 rounded-full mb-2 shadow-sm">
-                            <div
-                                class="bg-white dark:bg-gray-700 p-4 rounded-2xl rounded-bl-none shadow-sm max-w-[80%] text-sm text-gray-700 dark:text-gray-200 leading-relaxed border border-gray-100 dark:border-gray-600">
-                                Mình hiểu mà. Cảm giác đó thật khó chịu. <br><br>Nhưng cậu đã làm rất tốt các
-                                bài trước rồi. Hãy thử chia nhỏ bài tập ra nhé, làm 25 phút rồi nghỉ 5 phút
-                                (Pomodoro). Mình tin cậu sẽ làm được! 💪 Cậu muốn nghe một chút nhạc Lo-fi để
-                                tập trung không?
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Replies -->
-                    <div class="px-4 pb-2 flex gap-2 overflow-x-auto" id="quick-replies">
-                        <button
-                            class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">😊
-                            Đỡ hơn rồi</button>
-                        <button
-                            class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">💪
-                            Tiếp tục thôi</button>
-                        <button
-                            class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">😭
-                            Vẫn mệt</button>
-                    </div>
-
-                    <!-- Input Area -->
-                    <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 z-10">
-                        <div
-                            class="relative flex items-center bg-gray-100 dark:bg-gray-900 rounded-2xl p-2 transition-all focus-within:ring-2 focus-within:ring-primary/50">
                             <button
-                                class="p-2 text-gray-400 hover:text-primary transition-colors hover:bg-white dark:hover:bg-gray-800 rounded-xl"><span
-                                    class="material-icons-round">sentiment_satisfied</span></button>
-                            <input type="text" placeholder="Nhập tin nhắn..."
-                                class="flex-1 bg-transparent border-none text-gray-800 dark:text-white px-3 focus:ring-0 placeholder-gray-400">
-                            <button
-                                class="p-2 text-gray-400 hover:text-primary transition-colors hover:bg-white dark:hover:bg-gray-800 rounded-xl"><span
-                                    class="material-icons-round">mic</span></button>
-                            <button
-                                class="ml-2 bg-primary text-white p-2.5 rounded-xl shadow-md hover:bg-orange-600 transition-all transform active:scale-95 flex items-center justify-center">
-                                <span class="material-icons-round">send</span>
+                                class="bg-primary hover:bg-orange-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg shadow-orange-500/30 flex items-center transition-all transform hover:-translate-y-0.5">
+                                <span class="material-icons-round mr-2">add</span> New Task
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- 5. Academic & Community -->
-        <!-- 5. Academic & Community -->
-        <section id="academic" class="dashboard-section hidden fade-in">
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                <!-- Left Column: Academic Stats -->
-                <div class="space-y-6">
-                    <!-- GPA Goal Card -->
-                    <div
-                        class="bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-6 shadow-lg text-white relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 opacity-20"><span
-                                class="material-icons-round text-6xl">flag</span></div>
-                        <h3 class="font-bold text-lg mb-1">Mục tiêu GPA</h3>
-                        <div class="flex items-end gap-2 mb-4">
-                            <span class="text-4xl font-extrabold">3.6</span>
-                            <span class="text-sm font-medium opacity-80 mb-1">/ 4.0</span>
-                        </div>
-                        <div class="w-full bg-white/20 rounded-full h-2 mb-2">
-                            <div class="bg-white h-2 rounded-full shadow-sm" style="width: 90%"></div>
-                        </div>
-                        <p class="text-xs font-medium opacity-90">Hiện tại: 3.52 • Còn 0.08 để đạt mục tiêu!</p>
-                    </div>
-
-                    <!-- GPA Chart Card -->
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Biểu đồ học tập</h3>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">Tiến độ qua các kỳ</p>
+                    <div class="flex flex-1 overflow-hidden">
+                        <!-- Filter Sidebar -->
+                        <aside
+                            class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex-col hidden xl:flex overflow-y-auto z-0 rounded-bl-3xl">
+                            <div
+                                class="p-6 border-b border-gray-100 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 z-10">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                                        <span class="material-icons-round text-primary">tune</span>
+                                        Filters
+                                    </h3>
+                                    <button class="text-xs font-bold text-gray-400 hover:text-primary">Reset</button>
+                                </div>
                             </div>
-                            <span
-                                class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-lg flex items-center">
-                                <span class="material-icons-round text-xs mr-1">trending_up</span> +0.2
-                            </span>
-                        </div>
-                        <div class="h-48 relative">
-                            <canvas id="gpaChart"></canvas>
-                        </div>
-                    </div>
+                            <div class="p-6 space-y-8">
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                        <span class="material-icons-round text-sm">school</span> Subject
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">Toán
+                                                học</span>
+                                            <span
+                                                class="ml-auto text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-400 px-2 py-0.5 rounded-md">4</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">Ngữ
+                                                Văn</span>
+                                            <span
+                                                class="ml-auto text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-400 px-2 py-0.5 rounded-md">2</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">Vật
+                                                Lý</span>
+                                            <span
+                                                class="ml-auto text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-400 px-2 py-0.5 rounded-md">3</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input
+                                                class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">Tiếng
+                                                Anh</span>
+                                            <span
+                                                class="ml-auto text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-400 px-2 py-0.5 rounded-md">1</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                        <span class="material-icons-round text-sm">flag</span> Priority
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-red-500 focus:ring-red-500 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Cao
+                                                (High)</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-yellow-500 focus:ring-yellow-500 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Trung
+                                                bình (Med)</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 cursor-pointer group">
+                                            <input checked=""
+                                                class="w-4 h-4 rounded text-green-500 focus:ring-green-500 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                                                type="checkbox" />
+                                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                            <span
+                                                class="text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Thấp
+                                                (Low)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                        <span class="material-icons-round text-sm">event_upcoming</span> Due Date
+                                    </h4>
+                                    <div class="space-y-2">
+                                        <label
+                                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer -ml-2">
+                                            <input checked=""
+                                                class="text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-transparent"
+                                                name="duedate" type="radio" />
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">All
+                                                Time</span>
+                                        </label>
+                                        <label
+                                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer -ml-2">
+                                            <input
+                                                class="text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-transparent"
+                                                name="duedate" type="radio" />
+                                            <span
+                                                class="text-sm font-medium text-gray-700 dark:text-gray-300">Today</span>
+                                        </label>
+                                        <label
+                                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer -ml-2">
+                                            <input
+                                                class="text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-transparent"
+                                                name="duedate" type="radio" />
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Next 7
+                                                Days</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
 
-                    <!-- Subject Progress -->
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Tiến độ môn học</h3>
-                        <div class="space-y-4">
-                            <!-- Subject 1 -->
-                            <div class="group">
+                        <!-- Main Board Area -->
+                        <div
+                            class="flex-1 overflow-x-auto overflow-y-hidden bg-gray-100 dark:bg-gray-900 p-4 md:p-6 lg:p-8">
+                            <!-- KANBAN VIEW -->
+                            <div id="deadline-kanban-view"
+                                class="h-full min-w-[1000px] grid grid-cols-3 gap-6 lg:gap-8 flex">
+                                <!-- Column 1 -->
                                 <div
-                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
-                                    <span>Toán cao cấp</span>
-                                    <span class="text-primary">85%</span>
+                                    class="flex flex-col h-full bg-gray-200/50 dark:bg-gray-800/30 rounded-2xl p-2 border border-gray-200 dark:border-gray-700/50">
+                                    <div class="flex items-center justify-between px-3 py-4">
+                                        <h3
+                                            class="font-extrabold text-gray-600 dark:text-gray-200 flex items-center gap-2 text-sm uppercase tracking-wide">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span>
+                                            Chưa bắt đầu
+                                            <span
+                                                class="bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">2</span>
+                                        </h3>
+                                        <button
+                                            class="text-gray-400 hover:text-primary bg-white dark:bg-gray-700 rounded-lg p-1 transition-colors shadow-sm">
+                                            <span class="material-icons-round text-lg">add</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 overflow-y-auto space-y-3 px-2 pb-2 custom-scrollbar">
+                                        <!-- Card -->
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm hover:shadow-lg border-l-4 border-green-500 transition-all cursor-grab active:cursor-grabbing group">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div
+                                                        class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center">
+                                                        <span class="material-icons-round text-lg">science</span>
+                                                    </div>
+                                                    <span
+                                                        class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Vật
+                                                        Lý</span>
+                                                </div>
+                                                <button class="text-gray-300 hover:text-gray-500"><span
+                                                        class="material-icons-round text-lg">more_horiz</span></button>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-gray-800 dark:text-white mb-3 text-sm leading-snug group-hover:text-primary transition-colors">
+                                                Lab Report: Thermodynamics</h4>
+                                            <div
+                                                class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="text-[10px] text-gray-400 font-semibold uppercase">Deadline</span>
+                                                    <span
+                                                        class="text-xs font-bold text-gray-600 dark:text-gray-400">30/01,
+                                                        10:00 AM</span>
+                                                </div>
+                                                <div class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-right">
+                                                    <span
+                                                        class="block text-[9px] text-gray-400 font-bold uppercase">Time
+                                                        left</span>
+                                                    <span
+                                                        class="text-sm font-bold text-gray-600 dark:text-gray-300 font-mono">2
+                                                        days</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card -->
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm hover:shadow-lg border-l-4 border-yellow-400 transition-all cursor-grab active:cursor-grabbing group">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div
+                                                        class="w-8 h-8 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 flex items-center justify-center">
+                                                        <span class="material-icons-round text-lg">history_edu</span>
+                                                    </div>
+                                                    <span
+                                                        class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Lịch
+                                                        sử</span>
+                                                </div>
+                                                <button class="text-gray-300 hover:text-gray-500"><span
+                                                        class="material-icons-round text-lg">more_horiz</span></button>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-gray-800 dark:text-white mb-3 text-sm leading-snug group-hover:text-primary transition-colors">
+                                                Essay: Vietnam War Impact</h4>
+                                            <div
+                                                class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="text-[10px] text-gray-400 font-semibold uppercase">Deadline</span>
+                                                    <span
+                                                        class="text-xs font-bold text-gray-600 dark:text-gray-400">02/02,
+                                                        11:59 PM</span>
+                                                </div>
+                                                <div class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-right">
+                                                    <span
+                                                        class="block text-[9px] text-gray-400 font-bold uppercase">Time
+                                                        left</span>
+                                                    <span
+                                                        class="text-sm font-bold text-gray-600 dark:text-gray-300 font-mono">5
+                                                        days</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-primary to-orange-400 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
-                                        style="transform: scaleX(0.85)"></div>
+                                <!-- Column 2 -->
+                                <div
+                                    class="flex flex-col h-full bg-gray-200/50 dark:bg-gray-800/30 rounded-2xl p-2 border border-gray-200 dark:border-gray-700/50">
+                                    <div class="flex items-center justify-between px-3 py-4">
+                                        <h3
+                                            class="font-extrabold text-gray-700 dark:text-white flex items-center gap-2 text-sm uppercase tracking-wide">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                                            Đang làm
+                                            <span
+                                                class="bg-white dark:bg-gray-700 text-primary dark:text-primary text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">2</span>
+                                        </h3>
+                                        <button
+                                            class="text-gray-400 hover:text-primary bg-white dark:bg-gray-700 rounded-lg p-1 transition-colors shadow-sm">
+                                            <span class="material-icons-round text-lg">add</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 overflow-y-auto space-y-3 px-2 pb-2 custom-scrollbar">
+                                        <!-- Card -->
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md shadow-red-100 dark:shadow-none hover:shadow-xl border-l-4 border-red-500 transition-all cursor-grab active:cursor-grabbing group relative overflow-hidden transform hover:-translate-y-1">
+                                            <div
+                                                class="absolute right-0 top-0 w-16 h-16 bg-red-50 dark:bg-red-900/10 rounded-bl-full -z-0">
+                                            </div>
+                                            <div class="relative z-10">
+                                                <div class="flex items-center justify-between mb-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <div
+                                                            class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center">
+                                                            <span class="material-icons-round text-lg">calculate</span>
+                                                        </div>
+                                                        <span
+                                                            class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Toán
+                                                            CC</span>
+                                                    </div>
+                                                    <div
+                                                        class="bg-red-100 dark:bg-red-900/40 text-red-600 text-[10px] font-bold px-1.5 py-0.5 rounded">
+                                                        CAO</div>
+                                                </div>
+                                                <h4
+                                                    class="font-bold text-gray-800 dark:text-white mb-3 text-sm leading-snug group-hover:text-red-600 transition-colors">
+                                                    Bài tập Đại số tuyến tính - Chương 3</h4>
+                                                <div
+                                                    class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                                                    <div class="flex flex-col">
+                                                        <span
+                                                            class="text-[10px] text-gray-400 font-semibold uppercase">Deadline</span>
+                                                        <span class="text-xs font-bold text-red-600">Hôm nay,
+                                                            23:59</span>
+                                                    </div>
+                                                    <div
+                                                        class="bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded text-right">
+                                                        <span
+                                                            class="block text-[9px] text-red-600/70 font-bold uppercase">GẤP</span>
+                                                        <span
+                                                            class="text-sm font-black text-red-600 font-mono animate-pulse">04:30:00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card -->
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm hover:shadow-lg border-l-4 border-red-500 transition-all cursor-grab active:cursor-grabbing group">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div
+                                                        class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center">
+                                                        <span class="material-icons-round text-lg">campaign</span>
+                                                    </div>
+                                                    <span
+                                                        class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tiếng
+                                                        Anh</span>
+                                                </div>
+                                                <button class="text-gray-300 hover:text-gray-500"><span
+                                                        class="material-icons-round text-lg">more_horiz</span></button>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-gray-800 dark:text-white mb-3 text-sm leading-snug group-hover:text-primary transition-colors">
+                                                Presentation: Global Warming</h4>
+                                            <div
+                                                class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="text-[10px] text-gray-400 font-semibold uppercase">Deadline</span>
+                                                    <span
+                                                        class="text-xs font-bold text-gray-600 dark:text-gray-400">Mai,
+                                                        09:00 AM</span>
+                                                </div>
+                                                <div class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-right">
+                                                    <span
+                                                        class="block text-[9px] text-gray-400 font-bold uppercase">Time
+                                                        left</span>
+                                                    <span
+                                                        class="text-sm font-bold text-gray-600 dark:text-gray-300 font-mono">14
+                                                        hours</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Column 3 -->
+                                <div
+                                    class="flex flex-col h-full bg-gray-200/50 dark:bg-gray-800/30 rounded-2xl p-2 border border-gray-200 dark:border-gray-700/50">
+                                    <div class="flex items-center justify-between px-3 py-4">
+                                        <h3
+                                            class="font-extrabold text-gray-600 dark:text-gray-200 flex items-center gap-2 text-sm uppercase tracking-wide">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                                            Hoàn thành
+                                            <span
+                                                class="bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">1</span>
+                                        </h3>
+                                        <button
+                                            class="text-gray-400 hover:text-primary bg-white dark:bg-gray-700 rounded-lg p-1 transition-colors shadow-sm">
+                                            <span class="material-icons-round text-lg">add</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 overflow-y-auto space-y-3 px-2 pb-2 custom-scrollbar">
+                                        <!-- Card -->
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700/50 opacity-75 hover:opacity-100 transition-opacity cursor-grab group">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div
+                                                        class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-400 flex items-center justify-center">
+                                                        <span class="material-icons-round text-lg">check_circle</span>
+                                                    </div>
+                                                    <span
+                                                        class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tiếng
+                                                        Anh</span>
+                                                </div>
+                                                <div
+                                                    class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                                    <span class="material-icons-round text-sm">done</span>
+                                                </div>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-gray-600 dark:text-gray-400 mb-3 text-sm leading-snug line-through">
+                                                Quiz: English Unit 5 Vocab</h4>
+                                            <div
+                                                class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="text-[10px] text-gray-400 font-semibold uppercase">Submitted</span>
+                                                    <span class="text-xs font-bold text-gray-500">Yesterday</span>
+                                                </div>
+                                                <div
+                                                    class="bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded text-right">
+                                                    <span
+                                                        class="text-[10px] font-bold text-green-600 uppercase tracking-wider">Done</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Subject 2 -->
-                            <div class="group">
+                            <!-- LIST VIEW (Hidden by default, structure can be enhanced or simple fallback) -->
+                            <div id="deadline-list-view" class="hidden flex-col h-full space-y-4">
+                                <!-- Reuse simplified list items or enhanced ones similar to cards but in row -->
                                 <div
-                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
-                                    <span>Lập trình Web</span>
-                                    <span class="text-blue-500">92%</span>
-                                </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                                    <div class="bg-blue-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
-                                        style="transform: scaleX(0.92)"></div>
-                                </div>
-                            </div>
-                            <!-- Subject 3 -->
-                            <div class="group">
-                                <div
-                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
-                                    <span>Triết học</span>
-                                    <span class="text-purple-500">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                                    <div class="bg-purple-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
-                                        style="transform: scaleX(0.70)"></div>
+                                    class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border-l-4 border-red-500 flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center">
+                                            <span class="material-icons-round">calculate</span></div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-white">Toán CC: Bài tập Đại số
+                                                tuyến tinh</h4>
+                                            <p class="text-xs text-gray-500">Deadline: Hôm nay, 23:59</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span
+                                            class="text-sm font-black text-red-600 font-mono animate-pulse">04:30:00</span>
+                                        <span
+                                            class="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">CAO</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Trending Topics -->
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center"><span
-                                class="material-icons-round text-primary mr-2">local_fire_department</span> Trending
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#JavaSpring</span>
-                            <span
-                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Calculus</span>
-                            <span
-                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#ExamPrep</span>
-                            <span
-                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Internship</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Community Feed -->
-                <div class="xl:col-span-2 flex flex-col h-full">
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 h-full">
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                            <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white flex items-center">
-                                <span class="material-icons-round text-orange-500 mr-2">forum</span> Cộng đồng học tập
+                <!-- 4. Mood Assistant -->
+                <section id="mood" class="dashboard-section hidden h-[calc(100vh-8rem)]">
+                    <div class="flex flex-col lg:flex-row h-full gap-6">
+                        <!-- Left Sidebar (Mood History) -->
+                        <div
+                            class="w-full lg:w-80 bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col hidden lg:flex">
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-4 text-lg flex items-center">
+                                <span class="material-icons-round text-primary mr-2">history</span> Lịch sử cảm xúc
                             </h3>
-                            <div class="flex items-center gap-2 w-full sm:w-auto">
-                                <div class="relative flex-1 sm:w-48">
-                                    <input type="text" placeholder="Tìm chủ đề..."
-                                        class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-xl py-2 pl-3 pr-8 text-sm focus:ring-2 focus:ring-primary">
+
+                            <!-- Mood Trend Chart -->
+                            <div class="h-32 mb-4">
+                                <canvas id="moodChart"></canvas>
+                            </div>
+
+                            <div class="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
+                                <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700 pb-4">
+                                    <div
+                                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-green-500 ring-4 ring-white dark:ring-gray-800">
+                                    </div>
+                                    <div class="text-xs text-gray-400 font-bold mb-1">Hôm nay, 10:00</div>
+                                    <div
+                                        class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 dark:border-green-900/50">
+                                        <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Hào hứng 😄</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Hoàn thành bài tập sớm.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700 pb-4">
+                                    <div
+                                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-red-400 ring-4 ring-white dark:ring-gray-800">
+                                    </div>
+                                    <div class="text-xs text-gray-400 font-bold mb-1">Hôm qua, 20:00</div>
+                                    <div
+                                        class="bg-red-50 dark:bg-red-900/20 p-3 rounded-xl border border-red-100 dark:border-red-900/50">
+                                        <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Căng thẳng 😫</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Nhiều deadline dồn dập.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-700">
+                                    <div
+                                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-400 ring-4 ring-white dark:ring-gray-800">
+                                    </div>
+                                    <div class="text-xs text-gray-400 font-bold mb-1">24/04</div>
+                                    <div
+                                        class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl border border-blue-100 dark:border-blue-900/50">
+                                        <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Bình thường 🙂</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Smart Suggestions -->
+                            <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                <p class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase">Gợi ý cho
+                                    bạn</p>
+                                <div class="flex gap-2 overflow-x-auto pb-2">
+                                    <div
+                                        class="min-w-[100px] bg-purple-50 dark:bg-purple-900/20 p-2 rounded-xl text-center cursor-pointer hover:bg-purple-100 transition-colors">
+                                        <span class="text-xl">🎵</span>
+                                        <p class="text-[10px] font-bold text-purple-700 dark:text-purple-300 mt-1">Lo-fi
+                                            Chill</p>
+                                    </div>
+                                    <div
+                                        class="min-w-[100px] bg-teal-50 dark:bg-teal-900/20 p-2 rounded-xl text-center cursor-pointer hover:bg-teal-100 transition-colors">
+                                        <span class="text-xl">🧘</span>
+                                        <p class="text-[10px] font-bold text-teal-700 dark:text-teal-300 mt-1">Thở 5p
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Chat Area -->
+                        <div
+                            class="flex-1 bg-surface-light dark:bg-surface-dark rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden relative">
+                            <!-- Background Decor -->
+                            <div
+                                class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none">
+                            </div>
+
+                            <!-- Chat Header -->
+                            <div
+                                class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm z-10">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
+                                            class="w-10 h-10 rounded-full shadow-md">
+                                        <span
+                                            class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Trợ lý Cảm xúc AI</h3>
+                                        <p class="text-xs text-primary font-medium">Luôn lắng nghe bạn</p>
+                                    </div>
+                                </div>
+                                <button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><span
+                                        class="material-icons-round">more_vert</span></button>
+                            </div>
+
+                            <!-- Messages -->
+                            <div class="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50/50 dark:bg-gray-900/50 custom-scrollbar z-0"
+                                id="chat-messages">
+                                <div class="flex flex-col items-center justify-center py-4">
                                     <span
-                                        class="material-icons-round absolute right-2 top-2 text-gray-400 text-sm">search</span>
+                                        class="text-xs font-bold text-gray-400 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full">Hôm
+                                        nay, 14:30</span>
                                 </div>
+
+                                <div class="flex items-end gap-3">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
+                                        class="w-8 h-8 rounded-full mb-2 shadow-sm">
+                                    <div
+                                        class="bg-white dark:bg-gray-700 p-4 rounded-2xl rounded-bl-none shadow-sm max-w-[80%] text-sm text-gray-700 dark:text-gray-200 leading-relaxed border border-gray-100 dark:border-gray-600">
+                                        Chào Minh Nhật! 👋 Mình thấy lịch học hôm nay của cậu khá dày. Cậu cảm thấy thế
+                                        nào? Có cần mình giúp gì không?
+                                    </div>
+                                </div>
+
+                                <div class="flex items-end gap-3 flex-row-reverse">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvCI3SrwCoYcJiYTZ4AGbPtBMepDpZLrtzqykoCdWCqN1xuXEiubqXcohcWyIUY0DRj3jHR-6RDQGkYTSn2Joqx-axTn1dGWar50otjVgUfzkWKtvKPFjVq7zlTaQTY5Ml_fIJPLPJ7hDuNY2uKHatA_7G3pmnyLHAV7j8kNmfYGk1dZawp01wb93o_7XTybip7-c4Cb4bmOyuOV5sqQn7s0xvWLbsQK79sOoI9ei1K0BAzSTe77mDizmgU0bmgS-o_DUJMACXNEg"
+                                        class="w-8 h-8 rounded-full mb-2 shadow-sm">
+                                    <div
+                                        class="bg-primary text-white p-4 rounded-2xl rounded-br-none shadow-md max-w-[80%] text-sm leading-relaxed">
+                                        Mình thấy hơi áp lực vì deadline môn Toán sắp đến hạn. 😥
+                                    </div>
+                                </div>
+
+                                <div class="flex items-end gap-3">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhDW-B-yTTcCLESGkflkLBu8p0FQzSbPmIguJSwvF3cliyyN0--1Nsw42DW2HMNOSF5X0rY3G4_pMxu2K_0UgA4fOyY4jz__k3DNbrAKI-qJMh8o6Dz1RyfpNdLsiEwQDIyZ-93ZncA2X4YxprYJoDv6ku7GFS5yFzQm7G5fn9Gp1rY6IbNkQWeiJZE9VVFNh4XK-6GqCvc9A4pHyE_YYA1bFTbNsoSIkqhK-oxoT99H84W2geVDclEXyIl9iRF75HUHbfjDZpkA"
+                                        class="w-8 h-8 rounded-full mb-2 shadow-sm">
+                                    <div
+                                        class="bg-white dark:bg-gray-700 p-4 rounded-2xl rounded-bl-none shadow-sm max-w-[80%] text-sm text-gray-700 dark:text-gray-200 leading-relaxed border border-gray-100 dark:border-gray-600">
+                                        Mình hiểu mà. Cảm giác đó thật khó chịu. <br><br>Nhưng cậu đã làm rất tốt các
+                                        bài trước rồi. Hãy thử chia nhỏ bài tập ra nhé, làm 25 phút rồi nghỉ 5 phút
+                                        (Pomodoro). Mình tin cậu sẽ làm được! 💪 Cậu muốn nghe một chút nhạc Lo-fi để
+                                        tập trung không?
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Replies -->
+                            <div class="px-4 pb-2 flex gap-2 overflow-x-auto" id="quick-replies">
                                 <button
-                                    class="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-xl font-bold text-sm shadow-md transition-colors whitespace-nowrap">
-                                    + Bài mới
-                                </button>
+                                    class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">😊
+                                    Đỡ hơn rồi</button>
+                                <button
+                                    class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">💪
+                                    Tiếp tục thôi</button>
+                                <button
+                                    class="whitespace-nowrap bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 transition-colors shadow-sm">😭
+                                    Vẫn mệt</button>
+                            </div>
+
+                            <!-- Input Area -->
+                            <div
+                                class="p-4 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 z-10">
+                                <div
+                                    class="relative flex items-center bg-gray-100 dark:bg-gray-900 rounded-2xl p-2 transition-all focus-within:ring-2 focus-within:ring-primary/50">
+                                    <button
+                                        class="p-2 text-gray-400 hover:text-primary transition-colors hover:bg-white dark:hover:bg-gray-800 rounded-xl"><span
+                                            class="material-icons-round">sentiment_satisfied</span></button>
+                                    <input type="text" placeholder="Nhập tin nhắn..."
+                                        class="flex-1 bg-transparent border-none text-gray-800 dark:text-white px-3 focus:ring-0 placeholder-gray-400">
+                                    <button
+                                        class="p-2 text-gray-400 hover:text-primary transition-colors hover:bg-white dark:hover:bg-gray-800 rounded-xl"><span
+                                            class="material-icons-round">mic</span></button>
+                                    <button
+                                        class="ml-2 bg-primary text-white p-2.5 rounded-xl shadow-md hover:bg-orange-600 transition-all transform active:scale-95 flex items-center justify-center">
+                                        <span class="material-icons-round">send</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- Post 1 -->
-                        <div
-                            class="border-b border-gray-100 dark:border-gray-700 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
-                            <div class="flex items-start gap-4">
-                                <img src="https://i.pravatar.cc/100?img=3"
-                                    class="w-12 h-12 rounded-full border-2 border-gray-200 dark:border-gray-700 shadow-sm">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <h4 class="font-bold text-gray-900 dark:text-white text-lg">Hỏi về
-                                                bài tập ASM Java</h4>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-0.5">
-                                                Trần Văn A • 2 giờ trước • <span
-                                                    class="text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded">Java</span>
-                                            </p>
+                <!-- 5. Academic & Community -->
+                <!-- 5. Academic & Community -->
+                <section id="academic" class="dashboard-section hidden fade-in">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                        <!-- Left Column: Academic Stats -->
+                        <div class="space-y-6">
+                            <!-- GPA Goal Card -->
+                            <div
+                                class="bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-6 shadow-lg text-white relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-4 opacity-20"><span
+                                        class="material-icons-round text-6xl">flag</span></div>
+                                <h3 class="font-bold text-lg mb-1">Mục tiêu GPA</h3>
+                                <div class="flex items-end gap-2 mb-4">
+                                    <span class="text-4xl font-extrabold">3.6</span>
+                                    <span class="text-sm font-medium opacity-80 mb-1">/ 4.0</span>
+                                </div>
+                                <div class="w-full bg-white/20 rounded-full h-2 mb-2">
+                                    <div class="bg-white h-2 rounded-full shadow-sm" style="width: 90%"></div>
+                                </div>
+                                <p class="text-xs font-medium opacity-90">Hiện tại: 3.52 • Còn 0.08 để đạt mục tiêu!</p>
+                            </div>
+
+                            <!-- GPA Chart Card -->
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Biểu đồ học tập</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Tiến độ qua các kỳ</p>
+                                    </div>
+                                    <span
+                                        class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-lg flex items-center">
+                                        <span class="material-icons-round text-xs mr-1">trending_up</span> +0.2
+                                    </span>
+                                </div>
+                                <div class="h-48 relative">
+                                    <canvas id="gpaChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Subject Progress -->
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Tiến độ môn học</h3>
+                                <div class="space-y-4">
+                                    <!-- Subject 1 -->
+                                    <div class="group">
+                                        <div
+                                            class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
+                                            <span>Toán cao cấp</span>
+                                            <span class="text-primary">85%</span>
                                         </div>
-                                        <button class="text-gray-400 hover:text-gray-600"><span
-                                                class="material-icons-round">more_horiz</span></button>
+                                        <div
+                                            class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                            <div class="bg-gradient-to-r from-primary to-orange-400 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                                style="transform: scaleX(0.85)"></div>
+                                        </div>
                                     </div>
-                                    <p class="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
-                                        Mọi người cho mình hỏi phần kết nối Database trong bài Assignment 1 với
-                                        ạ. Mình bị lỗi connection timeout mãi mà không fix được. Có ai gặp lỗi
-                                        tương tự không? 😢
-                                    </p>
-                                    <div class="mt-3 flex items-center gap-2 overflow-x-auto pb-2">
-                                        <img src="https://via.placeholder.com/150x100?text=Error.png"
-                                            class="h-20 rounded-lg border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity">
+                                    <!-- Subject 2 -->
+                                    <div class="group">
+                                        <div
+                                            class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
+                                            <span>Lập trình Web</span>
+                                            <span class="text-blue-500">92%</span>
+                                        </div>
+                                        <div
+                                            class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                            <div class="bg-blue-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                                style="transform: scaleX(0.92)"></div>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center gap-6 mt-4">
-                                        <button
-                                            class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-semibold group">
-                                            <span
-                                                class="material-icons-round mr-1 group-hover:scale-110 transition-transform">thumb_up_off_alt</span>
-                                            12
-                                        </button>
-                                        <button
-                                            class="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group">
-                                            <span
-                                                class="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span>
-                                            5 Bình luận
-                                        </button>
-                                        <button
-                                            class="flex items-center text-gray-500 hover:text-gray-700 transition-colors text-sm font-semibold ml-auto">
-                                            <span class="material-icons-round mr-1">share</span> Chia sẻ
-                                        </button>
+                                    <!-- Subject 3 -->
+                                    <div class="group">
+                                        <div
+                                            class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
+                                            <span>Triết học</span>
+                                            <span class="text-purple-500">70%</span>
+                                        </div>
+                                        <div
+                                            class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                            <div class="bg-purple-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                                style="transform: scaleX(0.70)"></div>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Trending Topics -->
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center"><span
+                                        class="material-icons-round text-primary mr-2">local_fire_department</span>
+                                    Trending
+                                </h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#JavaSpring</span>
+                                    <span
+                                        class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Calculus</span>
+                                    <span
+                                        class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#ExamPrep</span>
+                                    <span
+                                        class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Internship</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Post 2 -->
-                        <div
-                            class="border-b border-gray-100 dark:border-gray-700 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
-                            <div class="flex items-start gap-4">
-                                <img src="https://i.pravatar.cc/100?img=5"
-                                    class="w-12 h-12 rounded-full border-2 border-gray-200 dark:border-gray-700 shadow-sm">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <h4 class="font-bold text-gray-900 dark:text-white text-lg">Chia sẻ
-                                                tài liệu ôn thi MAD</h4>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-0.5">
-                                                Nguyễn Thị B • 5 giờ trước • <span
-                                                    class="text-purple-500 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded">Discrete
-                                                    Math</span></p>
+                        <!-- Right Column: Community Feed -->
+                        <div class="xl:col-span-2 flex flex-col h-full">
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 h-full">
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                                    <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white flex items-center">
+                                        <span class="material-icons-round text-orange-500 mr-2">forum</span> Cộng đồng
+                                        học tập
+                                    </h3>
+                                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                                        <div class="relative flex-1 sm:w-48">
+                                            <input type="text" placeholder="Tìm chủ đề..."
+                                                class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-xl py-2 pl-3 pr-8 text-sm focus:ring-2 focus:ring-primary">
+                                            <span
+                                                class="material-icons-round absolute right-2 top-2 text-gray-400 text-sm">search</span>
                                         </div>
-                                        <button class="text-gray-400 hover:text-gray-600"><span
-                                                class="material-icons-round">more_horiz</span></button>
+                                        <button
+                                            class="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-xl font-bold text-sm shadow-md transition-colors whitespace-nowrap">
+                                            + Bài mới
+                                        </button>
                                     </div>
-                                    <p class="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
-                                        Mình vừa tổng hợp được bộ đề ôn thi môn Toán rời rạc (MAD101) từ các kỳ
-                                        trước. Ai cần thì comment email mình gửi nhé! Chúc mọi người thi tốt 💯
-                                    </p>
-                                    <div class="flex items-center gap-6 mt-4">
-                                        <button
-                                            class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-semibold group">
-                                            <span
-                                                class="material-icons-round mr-1 group-hover:scale-110 transition-transform">thumb_up_off_alt</span>
-                                            45
-                                        </button>
-                                        <button
-                                            class="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group">
-                                            <span
-                                                class="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span>
-                                            20 Bình luận
-                                        </button>
+                                </div>
+
+                                <!-- Post 1 -->
+                                <div
+                                    class="border-b border-gray-100 dark:border-gray-700 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-start gap-4">
+                                        <img src="https://i.pravatar.cc/100?img=3"
+                                            class="w-12 h-12 rounded-full border-2 border-gray-200 dark:border-gray-700 shadow-sm">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 dark:text-white text-lg">Hỏi về
+                                                        bài tập ASM Java</h4>
+                                                    <p
+                                                        class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-0.5">
+                                                        Trần Văn A • 2 giờ trước • <span
+                                                            class="text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded">Java</span>
+                                                    </p>
+                                                </div>
+                                                <button class="text-gray-400 hover:text-gray-600"><span
+                                                        class="material-icons-round">more_horiz</span></button>
+                                            </div>
+                                            <p class="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
+                                                Mọi người cho mình hỏi phần kết nối Database trong bài Assignment 1 với
+                                                ạ. Mình bị lỗi connection timeout mãi mà không fix được. Có ai gặp lỗi
+                                                tương tự không? 😢
+                                            </p>
+                                            <div class="mt-3 flex items-center gap-2 overflow-x-auto pb-2">
+                                                <img src="https://via.placeholder.com/150x100?text=Error.png"
+                                                    class="h-20 rounded-lg border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity">
+                                            </div>
+                                            <div class="flex items-center gap-6 mt-4">
+                                                <button
+                                                    class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-semibold group">
+                                                    <span
+                                                        class="material-icons-round mr-1 group-hover:scale-110 transition-transform">thumb_up_off_alt</span>
+                                                    12
+                                                </button>
+                                                <button
+                                                    class="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group">
+                                                    <span
+                                                        class="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span>
+                                                    5 Bình luận
+                                                </button>
+                                                <button
+                                                    class="flex items-center text-gray-500 hover:text-gray-700 transition-colors text-sm font-semibold ml-auto">
+                                                    <span class="material-icons-round mr-1">share</span> Chia sẻ
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Post 2 -->
+                                <div
+                                    class="border-b border-gray-100 dark:border-gray-700 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-start gap-4">
+                                        <img src="https://i.pravatar.cc/100?img=5"
+                                            class="w-12 h-12 rounded-full border-2 border-gray-200 dark:border-gray-700 shadow-sm">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 dark:text-white text-lg">Chia sẻ
+                                                        tài liệu ôn thi MAD</h4>
+                                                    <p
+                                                        class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-0.5">
+                                                        Nguyễn Thị B • 5 giờ trước • <span
+                                                            class="text-purple-500 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded">Discrete
+                                                            Math</span></p>
+                                                </div>
+                                                <button class="text-gray-400 hover:text-gray-600"><span
+                                                        class="material-icons-round">more_horiz</span></button>
+                                            </div>
+                                            <p class="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
+                                                Mình vừa tổng hợp được bộ đề ôn thi môn Toán rời rạc (MAD101) từ các kỳ
+                                                trước. Ai cần thì comment email mình gửi nhé! Chúc mọi người thi tốt 💯
+                                            </p>
+                                            <div class="flex items-center gap-6 mt-4">
+                                                <button
+                                                    class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-semibold group">
+                                                    <span
+                                                        class="material-icons-round mr-1 group-hover:scale-110 transition-transform">thumb_up_off_alt</span>
+                                                    45
+                                                </button>
+                                                <button
+                                                    class="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group">
+                                                    <span
+                                                        class="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span>
+                                                    20 Bình luận
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        </div>
+            </div>
         </div>
     </main>
 
