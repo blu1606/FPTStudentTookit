@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+        <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
             <a href="#"
                 class="nav-link flex items-center space-x-3 px-4 py-3 rounded-xl font-bold transition-all duration-200"
                 data-target="overview">
@@ -1100,24 +1100,39 @@
         <!-- 5. Academic & Community -->
         <!-- 5. Academic & Community -->
         <section id="academic" class="dashboard-section hidden fade-in">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <!-- Left Column: Academic Stats -->
-                <div class="space-y-8">
+                <div class="space-y-6">
+                    <!-- GPA Goal Card -->
+                    <div
+                        class="bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-6 shadow-lg text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-20"><span
+                                class="material-icons-round text-6xl">flag</span></div>
+                        <h3 class="font-bold text-lg mb-1">Mục tiêu GPA</h3>
+                        <div class="flex items-end gap-2 mb-4">
+                            <span class="text-4xl font-extrabold">3.6</span>
+                            <span class="text-sm font-medium opacity-80 mb-1">/ 4.0</span>
+                        </div>
+                        <div class="w-full bg-white/20 rounded-full h-2 mb-2">
+                            <div class="bg-white h-2 rounded-full shadow-sm" style="width: 90%"></div>
+                        </div>
+                        <p class="text-xs font-medium opacity-90">Hiện tại: 3.52 • Còn 0.08 để đạt mục tiêu!</p>
+                    </div>
+
                     <!-- GPA Chart Card -->
                     <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                         <div class="flex justify-between items-start mb-6">
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Điểm trung bình
-                                    (GPA)</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Học kỳ Spring 2024</p>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Biểu đồ học tập</h3>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Tiến độ qua các kỳ</p>
                             </div>
                             <span
-                                class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-xs font-bold px-3 py-1.5 rounded-lg flex items-center">
-                                <span class="material-icons-round text-sm mr-1">trending_up</span> +0.2
+                                class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-lg flex items-center">
+                                <span class="material-icons-round text-xs mr-1">trending_up</span> +0.2
                             </span>
                         </div>
-                        <div class="h-64 relative">
+                        <div class="h-48 relative">
                             <canvas id="gpaChart"></canvas>
                         </div>
                     </div>
@@ -1125,61 +1140,86 @@
                     <!-- Subject Progress -->
                     <div
                         class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Tiến độ môn học</h3>
-                        <div class="space-y-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Tiến độ môn học</h3>
+                        <div class="space-y-4">
                             <!-- Subject 1 -->
                             <div class="group">
                                 <div
-                                    class="flex justify-between text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
+                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
                                     <span>Toán cao cấp</span>
                                     <span class="text-primary">85%</span>
                                 </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-primary to-orange-400 h-2.5 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-primary to-orange-400 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
                                         style="transform: scaleX(0.85)"></div>
                                 </div>
                             </div>
                             <!-- Subject 2 -->
                             <div class="group">
                                 <div
-                                    class="flex justify-between text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
+                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
                                     <span>Lập trình Web</span>
                                     <span class="text-blue-500">92%</span>
                                 </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-blue-500 h-2.5 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-blue-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
                                         style="transform: scaleX(0.92)"></div>
                                 </div>
                             </div>
                             <!-- Subject 3 -->
                             <div class="group">
                                 <div
-                                    class="flex justify-between text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
+                                    class="flex justify-between text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
                                     <span>Triết học</span>
                                     <span class="text-purple-500">70%</span>
                                 </div>
-                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-purple-500 h-2.5 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
+                                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-purple-500 h-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"
                                         style="transform: scaleX(0.70)"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Trending Topics -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center"><span
+                                class="material-icons-round text-primary mr-2">local_fire_department</span> Trending
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#JavaSpring</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Calculus</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#ExamPrep</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 cursor-pointer transition-colors">#Internship</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Right Column: Community Feed -->
-                <div class="lg:col-span-2 space-y-6">
+                <div class="xl:col-span-2 flex flex-col h-full">
                     <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div class="flex items-center justify-between mb-6">
+                        class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 h-full">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
                             <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white flex items-center">
-                                <span class="material-icons-round text-orange-500 mr-2">forum</span> Cộng đồng
-                                học tập
+                                <span class="material-icons-round text-orange-500 mr-2">forum</span> Cộng đồng học tập
                             </h3>
-                            <button
-                                class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-xl font-bold text-sm shadow-md transition-colors">
-                                + Bài viết mới
-                            </button>
+                            <div class="flex items-center gap-2 w-full sm:w-auto">
+                                <div class="relative flex-1 sm:w-48">
+                                    <input type="text" placeholder="Tìm chủ đề..."
+                                        class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-xl py-2 pl-3 pr-8 text-sm focus:ring-2 focus:ring-primary">
+                                    <span
+                                        class="material-icons-round absolute right-2 top-2 text-gray-400 text-sm">search</span>
+                                </div>
+                                <button
+                                    class="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-xl font-bold text-sm shadow-md transition-colors whitespace-nowrap">
+                                    + Bài mới
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Post 1 -->

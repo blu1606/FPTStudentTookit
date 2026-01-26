@@ -22,11 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // === Navigation Logic ===
-    const navLinks = document.querySelectorAll('.nav-link');
+    // === Navigation Logic ===
     const sections = document.querySelectorAll('.dashboard-section');
     const pageTitle = document.getElementById('page-title');
+    const sidebarNav = document.getElementById('sidebar-nav');
+    // Also keep legacy selection for updating active state if needed, though delegation handles clicks
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    console.log('Script loaded. Nav initialized.');
 
     function setActiveSection(sectionId) {
+        console.log('Switching to section:', sectionId);
+
         // Hide all sections
         sections.forEach(section => {
             section.classList.add('hidden');
@@ -37,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.getElementById(sectionId);
         if (target) {
             target.classList.remove('hidden');
-            target.classList.add('fade-in');
+            // Slight delay to ensure DOM update allows animation re-trigger if needed, 
+            // but just adding class is usually enough
+            requestAnimationFrame(() => {
+                target.classList.add('fade-in');
+            });
+        } else {
+            console.error('Section not found:', sectionId);
         }
 
         // Update Nav State
@@ -47,9 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.remove('text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
 
                 // Update Page Title
-                const icon = link.querySelector('.material-icons-round').innerText;
-                const text = link.querySelector('span:last-child').innerText;
-                if (pageTitle) pageTitle.innerHTML = `<span class="material-icons-round mr-2 text-primary">${icon}</span>${text}`;
+                const iconElement = link.querySelector('.material-icons-round');
+                const textElement = link.querySelector('span:last-child');
+                if (pageTitle && iconElement && textElement) {
+                    const icon = iconElement.innerText;
+                    const text = textElement.innerText;
+                    pageTitle.innerHTML = `<span class="material-icons-round mr-2 text-primary">${icon}</span>${text}`;
+                }
 
             } else {
                 link.classList.remove('bg-primary/10', 'text-primary');
@@ -58,13 +75,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.dataset.target;
-            setActiveSection(targetId);
+    // Event Delegation for Navigation
+    if (sidebarNav) {
+        sidebarNav.addEventListener('click', (e) => {
+            const link = e.target.closest('.nav-link');
+            if (link) {
+                e.preventDefault();
+                const targetId = link.dataset.target;
+                if (targetId) {
+                    setActiveSection(targetId);
+                    // On mobile, close sidebar after click
+                    if (window.innerWidth < 768) {
+                        const sidebar = document.querySelector('aside');
+                        const overlay = document.getElementById('mobile-overlay');
+                        if (sidebar && overlay) {
+                            sidebar.classList.add('-translate-x-full');
+                            sidebar.classList.remove('translate-x-0');
+                            overlay.classList.add('hidden');
+                        }
+                    }
+                }
+            }
         });
-    });
+    } else {
+        // Fallback for individual listeners if sidebar-nav ID missing
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.dataset.target;
+                setActiveSection(targetId);
+            });
+        });
+    }
 
     // Default to overview
     setActiveSection('overview');
@@ -431,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quickReplies.length > 0) {
         quickReplies.forEach(btn => {
             btn.addEventListener('click', () => {
-                const text = btn.innerText.replace(/^[^\w\sà-ỹÀ-Y]+ /, ''); // Remove emoji prefix
+                const text = btn.innerText.replace(/^[\W\s]+ /, ''); // Remove emoji prefix using standard non-word class
                 const chatInput = document.querySelector('#mood input[type="text"]');
                 const sendBtn = document.querySelector('#mood button .material-icons-round');
 
@@ -451,5 +493,42 @@ document.addEventListener('DOMContentLoaded', () => {
             showNotification(`Đã mở: ${title}`, 'success');
         });
     });
+
+    // === Deadline View Logic ===
+    const deadlineListView = document.getElementById('deadline-list-view');
+    const deadlineKanbanView = document.getElementById('deadline-kanban-view');
+    const deadlineViewBtns = document.querySelectorAll('#deadline-view-toggle button');
+
+    if (deadlineListView && deadlineKanbanView && deadlineViewBtns.length > 0) {
+        deadlineViewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.dataset.view;
+
+                // Update UI Buttons
+                deadlineViewBtns.forEach(b => {
+                    if (b.dataset.view === view) {
+                        b.classList.remove('text-gray-500', 'hover:text-gray-900', 'dark:hover:text-white');
+                        b.classList.add('bg-white', 'dark:bg-gray-600', 'text-primary', 'shadow-sm');
+                    } else {
+                        b.classList.add('text-gray-500', 'hover:text-gray-900', 'dark:hover:text-white');
+                        b.classList.remove('bg-white', 'dark:bg-gray-600', 'text-primary', 'shadow-sm');
+                    }
+                });
+
+                // Toggle Views
+                if (view === 'list') {
+                    deadlineListView.classList.remove('hidden');
+                    deadlineListView.classList.add('flex');
+                    deadlineKanbanView.classList.add('hidden');
+                    deadlineKanbanView.classList.remove('flex');
+                } else if (view === 'kanban') {
+                    deadlineListView.classList.add('hidden');
+                    deadlineListView.classList.remove('flex');
+                    deadlineKanbanView.classList.remove('hidden');
+                    deadlineKanbanView.classList.add('flex');
+                }
+            });
+        });
+    }
 
 });
