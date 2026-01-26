@@ -5,19 +5,24 @@
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+
 .dark ::-webkit-scrollbar-thumb {
     background: #4b5563;
 }
+
 .dark ::-webkit-scrollbar-thumb:hover {
     background: #6b7280;
 }
@@ -26,6 +31,7 @@
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -38,6 +44,7 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
 .dark .glass {
     background: rgba(31, 41, 55, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -49,6 +56,42 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Drag and Drop Styles */
+.dragging {
+    opacity: 0.9;
+    cursor: grabbing;
+    z-index: 9999 !important;
+    pointer-events: none;
+    transition: none !important;
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    background-color: inherit; /* Maintain theme color */
+    border: 2px solid #F36F21; /* Highlight with primary color */
+}
+
+.task-card {
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    user-select: none;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.droppable-hover {
+    background-color: rgba(243, 111, 33, 0.05);
+    /* Primary color low opacity */
 }

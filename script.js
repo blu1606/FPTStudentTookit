@@ -370,55 +370,186 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === Drag & Drop Simulation (Visual Only) ===
-    const draggableTasks = document.querySelectorAll('#planner-week-view .absolute');
-    let selectedTask = null;
+    // === Drag & Drop Implementation ===
+    const initDragAndDrop = () => {
+        const plannerWeekViewContainer = document.getElementById('planner-week-view');
+        if (!plannerWeekViewContainer) return;
 
-    draggableTasks.forEach(task => {
-        if (task.style.pointerEvents === 'none' || task.classList.contains('pointer-events-none')) return; // Skip logic elements
+        // Select the content grid specifically (it has grid-rows-1 and is flex-1)
+        // The first .grid is the header.
+        const gridContainer = plannerWeekViewContainer.querySelector('.grid.grid-rows-1');
 
-        task.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent grid click
+        if (!gridContainer) {
+            console.error("Grid container not found");
+            return;
+        }
 
-            if (selectedTask === task) {
-                // Deselect
-                task.classList.remove('ring-2', 'ring-primary', 'scale-105', 'z-50');
-                task.classList.add('z-10');
-                selectedTask = null;
-                showNotification('Đã hủy chọn task', 'info');
-            } else {
-                // Deselect others
-                if (selectedTask) {
-                    selectedTask.classList.remove('ring-2', 'ring-primary', 'scale-105', 'z-50');
-                    selectedTask.classList.add('z-10');
-                }
+        // Select all task elements - strictly those that are absolute positioned tasks
+        const tasks = plannerWeekViewContainer.querySelectorAll('.absolute.z-10, .absolute.z-50');
 
-                // Select
-                selectedTask = task;
-                task.classList.add('ring-2', 'ring-primary', 'scale-105', 'z-50');
-                task.classList.remove('z-10');
-                showNotification('Click vào khung giờ mới để di chuyển', 'success');
-            }
+        // Grid Constants (matching 80px = 1 hour)
+        const PIXELS_PER_HOUR = 80;
+        const GRID_START_HOUR = 8;
+        const SNAP_MINUTES = 15;
+        const PIXELS_PER_SNAP = (PIXELS_PER_HOUR / 60) * SNAP_MINUTES;
+
+        tasks.forEach(task => {
+            task.classList.add('task-card'); // Add class for styling
+
+            task.addEventListener('mousedown', (e) => {
+                // Prevent drag if clicking buttons inside (like the 'more' button)
+                if (e.target.closest('button')) return;
+
+                e.preventDefault(); // Prevent text selection
+
+                const startX = e.clientX;
+                const startY = e.clientY;
+                const rect = task.getBoundingClientRect();
+
+                // Offset of mouse within the element
+                const offsetX = startX - rect.left;
+                const offsetY = startY - rect.top;
+
+                // Initial styles
+                const originalLeft = task.style.left || window.getComputedStyle(task).left;
+                const originalTop = task.style.top || window.getComputedStyle(task).top;
+                const originalWidth = rect.width;
+                const originalHeight = rect.height;
+
+                // Visual Feedback
+                task.classList.add('dragging');
+                task.style.width = `${originalWidth}px`; // Fix width during drag
+                task.style.height = `${originalHeight}px`; // Fix height
+                task.style.position = 'fixed';
+                task.style.left = `${rect.left}px`;
+                task.style.top = `${rect.top}px`;
+                task.style.zIndex = '9999';
+
+                // Helper to get grid column based on X position
+                const getColumnIndex = (x) => {
+                    const gridRect = gridContainer.getBoundingClientRect();
+                    const relativeX = x - gridRect.left;
+                    const colWidth = gridRect.width / 7;
+                    let col = Math.floor(relativeX / colWidth);
+                    return Math.max(0, Math.min(6, col)); // Clamp between 0 and 6
+                };
+
+                const onMouseMove = (moveEvent) => {
+                    // Update fixed position to follow mouse
+                    task.style.left = `${moveEvent.clientX - offsetX}px`;
+                    task.style.top = `${moveEvent.clientY - offsetY}px`;
+                };
+
+                const onMouseUp = (upEvent) => {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+
+                    task.classList.remove('dragging');
+                    task.style.position = 'absolute';
+                    task.style.zIndex = '';
+                    task.style.width = 'calc(100% - 8px)'; // Reset to responsive width with padding
+                    task.style.left = '4px'; // Center in column
+                    task.style.height = '';
+
+                    const gridRect = gridContainer.getBoundingClientRect();
+
+                    // 1. Determine Column (Day)
+                    const dropX = upEvent.clientX;
+                    const colIndex = getColumnIndex(dropX);
+
+                    // 2. Determine Row (Time)
+                    const scrollContainer = plannerWeekViewContainer.querySelector('.flex-1.overflow-auto');
+                    const scrollTop = scrollContainer.scrollTop;
+
+                    // Calculate Y relative to the grid container
+                    const relY = upEvent.clientY - gridRect.top - offsetY + scrollTop;
+                    // Wait, "Week Grid" is `relative flex-1 ... grid`. It is inside `flex-1 overflow-auto relative`.
+                    // So if we scroll, the grid container itself moves up?
+                    // No, the parent scrolls. The grid container is the content.
+
+                    // Let's assume the gridContainer IS the relative parent.
+                    // `top` is relative to it.
+
+                    // Snap to Logic
+                    // Round relY to nearest slot
+                    const snappedY = Math.round(relY / PIXELS_PER_SNAP) * PIXELS_PER_SNAP;
+
+                    // Bound checks
+                    const maxTop = (18 - GRID_START_HOUR) * PIXELS_PER_HOUR; // Until 18:00
+                    const finalTop = Math.max(0, Math.min(snappedY, maxTop));
+
+                    // Update Task Position
+                    // 1. Move DOM element to the correct column div
+                    // The grid has 7 columns of 1 row? 
+                    // <div class="relative h-full col-start-1 col-end-2 ...">
+                    // Tasks are inside these column-specific divs.
+
+                    // We need to find the target column container.
+                    // The grid structure is:
+                    // background lines (absolute)
+                    // vertical dividers (absolute)
+                    // ... columns (relative h-full col-start-X ...)
+
+                    // Columns are 1-indexed for CSS Grid lines, but let's assume standard divs order match grid-cols-7
+                    // The columns containing tasks are:
+                    // div.col-start-1 (Mon)
+                    // div.col-start-2 (Tue)
+                    // ...
+
+                    // We can query them by class or just index relative to existing children?
+                    // They are children of the .grid container.
+                    // Selector: `.grid > .relative.h-full.col-start-...`
+
+                    const dayColumns = Array.from(gridContainer.children).filter(el =>
+                        el.className.includes('col-start-') && el.className.includes('relative')
+                    );
+
+                    // Map colIndex (0-6) to the correct DOM element
+                    // Note: Check existing DOM structure in dashboard.html lines 616+
+                    // It has: "EXISTING TASKS" block.
+                    // Column 1 is Mon (index 0).
+
+                    const targetColumn = dayColumns[colIndex];
+
+                    if (targetColumn) {
+                        task.style.top = `${finalTop}px`;
+                        targetColumn.appendChild(task);
+
+                        // Recalculate Time for Display
+                        const totalMinutes = (finalTop / PIXELS_PER_HOUR) * 60;
+                        const hour = GRID_START_HOUR + Math.floor(totalMinutes / 60);
+                        const minute = Math.floor(totalMinutes % 60);
+
+                        const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+
+                        // Update time label in UI
+                        const timeBadge = task.querySelector('span.bg-white, span.bg-teal-100, span.bg-rose-100, span.bg-blue-100, span.bg-purple-100, span.bg-orange-100') || task.querySelector('span.text-xs.font-bold');
+                        // The selector above is a bit guessy, let's look at HTML structure
+                        // <span class="text-xs font-bold ...">08:00</span>
+                        if (timeBadge) {
+                            timeBadge.innerText = timeString;
+                        }
+
+                        showNotification(`Đã chuyển sang Thứ ${colIndex + 2}, lúc ${timeString}`, 'success');
+                    } else {
+                        // Revert if something wrong
+                        task.style.position = 'absolute';
+                        task.style.left = originalLeft;
+                        task.style.top = originalTop;
+                        showNotification('Không thể di chuyển đến vị trí này', 'info');
+                    }
+                };
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
         });
-    });
+    };
 
-    // Grid click to move
-    const plannerGrid = document.querySelector('#planner-week-view .grid');
-    if (plannerGrid) {
-        plannerGrid.addEventListener('click', (e) => {
-            if (selectedTask) {
-                // Provide visual feedback only for MVP
-                const rect = plannerGrid.getBoundingClientRect();
-                // Simple calculation for demo purposes (would need complex math for exact grid snapping)
-                showNotification('Đã di chuyển task đến vị trí mới (Demo)', 'success');
+    // Initialize
+    initDragAndDrop();
 
-                // Deselect
-                selectedTask.classList.remove('ring-2', 'ring-primary', 'scale-105', 'z-50');
-                selectedTask.classList.add('z-10');
-                selectedTask = null;
-            }
-        });
-    }
+    // Grid click to move (Optional: keep or remove? Removing as per plan to replace)
 
     // === Mood Trend Chart ===
     const moodCtx = document.getElementById('moodChart');
