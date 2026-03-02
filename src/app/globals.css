@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@plugin "@tailwindcss/forms";
+@plugin "tailwind-scrollbar-hide";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+
+/* Configuration from script block in HTML templates */
+@theme inline {
+  --color-primary: #ff7b00;
+  --color-primary-dark: #e66e00;
+
+  --color-secondary: #1E3A8A;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+
+  --color-background-light: #FFFAF0;
+  /* Used in Landing */
+  --color-background-dark: #1d140c;
+  /* Used in Landing */
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #2a2018;
+  /* Used in Landing */
+  --color-footer-bg: #2F2F2F;
+
+  /* Additional colors from dashboard.html */
+  --color-dash-bg-light: #F9FAFB;
+  --color-dash-bg-dark: #111827;
+  --color-dash-surface-dark: #1F2937;
+  --color-text-light: #1F2937;
+  --color-text-dark: #F9FAFB;
+
+  --font-display: var(--font-lexend), "Nunito", sans-serif;
+  --font-body: var(--font-noto-sans), sans-serif;
+
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --animate-bounce-slow: bounceSlow 3s infinite;
+}
+
+@keyframes bounceSlow {
+
+  0%,
+  100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+:root {
+  --background: #FFFAF0;
+  --foreground: #1d140c;
+}
+
+.dark {
+  --background: #1d140c;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Accordion transition */
+details>summary {
+  list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Nav backdrop blur */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark .glass {
+  background: rgba(31, 41, 55, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Drag and Drop Styles */
+.dragging {
+  opacity: 0.9;
+  cursor: grabbing;
+  z-index: 9999 !important;
+  pointer-events: none;
+  transition: none !important;
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: inherit;
+  /* Maintain theme color */
+  border: 2px solid var(--color-primary);
+  /* Highlight with primary color */
+}
+
+.task-card {
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.droppable-hover {
+  background-color: rgba(243, 111, 33, 0.05);
+}
