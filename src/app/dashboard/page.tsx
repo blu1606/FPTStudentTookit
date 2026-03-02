@@ -16,19 +16,27 @@ import ProfileSettingsModal from "@/components/dashboard/profile-settings-modal"
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function DashboardPage() {
-    const { user, isLoading } = useAuth();
+    const { user, isGuest, setIsGuest, isLoading } = useAuth();
     const router = useRouter();
     const [activeSection, setActiveSection] = useState("overview");
     const [pendingAction, setPendingAction] = useState<string | null>(null);
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     useEffect(() => {
-        if (!isLoading && !user) {
+        if (!isLoading && !user && !isGuest) {
             router.push("/auth/login");
         }
-    }, [user, isLoading, router]);
+    }, [user, isGuest, isLoading, router]);
 
     useEffect(() => {
+
+        // Failsafe: If AuthContext hasn't detected guest mode yet but cookie is present,
+        // we can trigger a re-sync or just wait for the component to re-render.
+        // Reading cookie directly here ensures we don't hang if AuthContext is stale.
+        if (!user && !isGuest && typeof document !== 'undefined' && document.cookie.includes('guest_mode=true')) {
+            setIsGuest(true);
+        }
+
         // Initial mobile overlay logic can still exist if needed
         const mobileMenuBtn = document.getElementById("mobile-menu-btn");
         const mobileOverlay = document.getElementById("mobile-overlay");
@@ -38,10 +46,10 @@ export default function DashboardPage() {
             // simplified for react
         }
         setupMobileMenu();
-    }, []);
+    }, [user, isGuest, setIsGuest]);
 
-    // Show nothing while checking auth or if not logged in
-    if (isLoading || !user) {
+    // Show nothing while checking auth or if not logged in and not guest
+    if (isLoading || (!user && !isGuest)) {
         return (
             <div className="h-screen w-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center gap-4">

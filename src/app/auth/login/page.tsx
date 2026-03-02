@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -13,8 +14,11 @@ export default function LoginPage() {
     const [showEmailLogin, setShowEmailLogin] = useState(false);
     const router = useRouter();
 
+    const { setIsGuest } = useAuth();
+
     const handleGuestLogin = () => {
         document.cookie = "guest_mode=true; path=/; max-age=86400"; // Expires in 1 day
+        setIsGuest(true);
         router.push("/dashboard");
     };
 

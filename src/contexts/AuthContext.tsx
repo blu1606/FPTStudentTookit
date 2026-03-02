@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 
 type AuthContextType = {
     user: User | null;
+    isGuest: boolean;
+    setIsGuest: (val: boolean) => void;
     isLoading: boolean;
     signOut: () => Promise<void>;
 };
@@ -15,6 +17,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
+    const [isGuest, setIsGuest] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const supabase = createClient();
     const router = useRouter();
@@ -24,11 +27,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             try {
                 const { data: { session } } = await supabase.auth.getSession();
                 const sessionUser = session?.user ?? null;
+                console.log("AuthContext: sessionUser", sessionUser);
                 setUser(sessionUser);
+
+                const hasGuestCookie = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+                console.log("AuthContext: hasGuestCookie", hasGuestCookie);
 
                 // Failsafe: if a real user is logged in, destroy any lingering guest_mode cookie
                 if (sessionUser && typeof document !== 'undefined') {
                     document.cookie = "guest_mode=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                    setIsGuest(false);
+                } else if (hasGuestCookie) {
+                    setIsGuest(true);
                 }
             } catch (error) {
                 console.error("Error checking auth session:", error);
@@ -46,6 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
                 if (sessionUser && typeof document !== 'undefined') {
                     document.cookie = "guest_mode=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                    setIsGuest(false);
                 }
             }
         );
@@ -60,6 +71,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (typeof document !== 'undefined') {
                 document.cookie = "guest_mode=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
             }
+            setIsGuest(false);
             await supabase.auth.signOut();
             router.push("/auth/login");
         } catch (error) {
@@ -68,7 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, isLoading, signOut }}>
+        <AuthContext.Provider value={{ user, isGuest, setIsGuest, isLoading, signOut }}>
             {children}
         </AuthContext.Provider>
     );
