@@ -30,11 +30,35 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
         async function fetchData() {
             setIsLoading(true);
 
-            if (useMockData) {
-                // Return static mocks and compute
+            const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+
+            if (useMockData || isGuest) {
+                // Return static mocks or loaded from localStorage
                 setTimeout(() => {
-                    setLessons(MOCK_LESSONS);
-                    setSubjects(MOCK_SUBJECTS); // Can compute real counts here if needed
+                    const savedLessons = localStorage.getItem("planner_lessons");
+                    const savedSubjects = localStorage.getItem("planner_subjects");
+
+                    if (savedLessons) {
+                        try {
+                            setLessons(JSON.parse(savedLessons));
+                        } catch (e) {
+                            console.error("Failed to parse local lessons", e);
+                            setLessons(MOCK_LESSONS);
+                        }
+                    } else {
+                        setLessons(MOCK_LESSONS);
+                    }
+
+                    if (savedSubjects) {
+                        try {
+                            setSubjects(JSON.parse(savedSubjects));
+                        } catch (e) {
+                            console.error("Failed to parse local subjects", e);
+                            setSubjects(MOCK_SUBJECTS);
+                        }
+                    } else {
+                        setSubjects(MOCK_SUBJECTS);
+                    }
                     setIsLoading(false);
                 }, 500);
                 return;
@@ -115,8 +139,18 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
         fetchData();
     }, [user, useMockData, supabase]);
 
+    // Save to local storage whenever data changes in mock/guest mode
+    useEffect(() => {
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        if (!isLoading && (useMockData || isGuest)) {
+            localStorage.setItem("planner_lessons", JSON.stringify(lessons));
+            localStorage.setItem("planner_subjects", JSON.stringify(subjects));
+        }
+    }, [lessons, subjects, isLoading, useMockData]);
+
     const addLesson = async (lesson: Omit<Lesson, "id">) => {
-        if (useMockData) {
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        if (useMockData || isGuest) {
             const newLesson = { ...lesson, id: `l-${Date.now()}` };
             setLessons((prev) => [newLesson, ...prev]);
             return;
@@ -157,7 +191,8 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
     };
 
     const addSubject = async (name: string, code: string): Promise<Subject | null> => {
-        if (useMockData) {
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        if (useMockData || isGuest) {
             const newSubject: Subject = {
                 id: `s-${Date.now()}`,
                 name,
@@ -208,7 +243,8 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
     };
 
     const deleteLesson = async (lessonId: string) => {
-        if (useMockData) {
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        if (useMockData || isGuest) {
             setLessons((prev) => prev.filter((l) => l.id !== lessonId));
             return;
         }

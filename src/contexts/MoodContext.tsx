@@ -34,22 +34,33 @@ export function MoodProvider({ children }: { children: React.ReactNode }) {
             try {
                 // Check if we should use mock data
                 let useMockData = process.env.NEXT_PUBLIC_USE_MOCK_DATA === "true";
+                let isGuest = false;
                 if (typeof document !== 'undefined') {
-                    const isGuest = document.cookie.includes('guest_mode=true');
+                    isGuest = document.cookie.includes('guest_mode=true');
                     if (isGuest) useMockData = true;
                 }
 
                 if (useMockData || !user) {
-                    setMoodEntries([
-                        {
-                            id: "mock-1",
-                            user_id: "mock",
-                            mood_type: "Hào hứng 🤩",
-                            score: 8,
-                            note: "Hoàn thành bài tập sớm.",
-                            recorded_at: new Date().toISOString()
+                    const saved = localStorage.getItem("planner_mood_entries");
+                    if (saved) {
+                        try {
+                            setMoodEntries(JSON.parse(saved));
+                        } catch (e) {
+                            console.error("Failed to parse local moods", e);
+                            setMoodEntries([]);
                         }
-                    ]);
+                    } else {
+                        setMoodEntries([
+                            {
+                                id: "mock-1",
+                                user_id: "mock",
+                                mood_type: "Hào hứng 🤩",
+                                score: 8,
+                                note: "Hoàn thành bài tập sớm.",
+                                recorded_at: new Date().toISOString()
+                            }
+                        ]);
+                    }
                     setIsLoading(false);
                     return;
                 }
@@ -74,8 +85,30 @@ export function MoodProvider({ children }: { children: React.ReactNode }) {
         fetchMoods();
     }, [user, supabase]);
 
+    // Save to local storage when data changes in mock/guest mode
+    useEffect(() => {
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        const useMockData = process.env.NEXT_PUBLIC_USE_MOCK_DATA === "true";
+        if (!isLoading && (useMockData || isGuest)) {
+            localStorage.setItem("planner_mood_entries", JSON.stringify(moodEntries));
+        }
+    }, [moodEntries, isLoading]);
+
     const addMoodEntry = async (entry: Omit<MoodEntry, "id" | "user_id" | "recorded_at">) => {
-        if (!user) return;
+        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
+        const useMockData = process.env.NEXT_PUBLIC_USE_MOCK_DATA === "true";
+
+        if (!user || isGuest || useMockData) {
+            const newEntry: MoodEntry = {
+                ...entry,
+                id: crypto.randomUUID(),
+                user_id: user?.id || "guest",
+                recorded_at: new Date().toISOString()
+            };
+            setMoodEntries(prev => [newEntry, ...prev]);
+            return;
+        }
+
         try {
             const { data, error } = await (supabase
                 .from("mood_entries") as any)

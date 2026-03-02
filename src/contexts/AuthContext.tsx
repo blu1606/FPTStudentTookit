@@ -73,7 +73,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
             setIsGuest(false);
             await supabase.auth.signOut();
-            router.push("/auth/login");
+            // Use window.location.href for a hard redirect to ensure all Contexts/States are reset
+            if (typeof window !== 'undefined') {
+                window.location.href = "/auth/login";
+            }
         } catch (error) {
             console.error("Error signing out:", error);
         }
