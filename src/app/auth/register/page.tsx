@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -12,16 +12,35 @@ export default function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const [isLoading, setIsLoading] = useState(false);
+    const [cooldown, setCooldown] = useState(0);
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const router = useRouter();
+
+    // Handlers for cooldown timer
+    useEffect(() => {
+        if (cooldown <= 0) return;
+
+        const interval = setInterval(() => {
+            setCooldown((prev) => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [cooldown]);
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
             setError("Mật khẩu xác nhận không khớp.");
+            return;
+        }
+
+
+
+        if (cooldown > 0) {
+            setError(`Vui lòng đợi ${cooldown} giây trước khi thử lại.`);
             return;
         }
 
@@ -32,7 +51,7 @@ export default function RegisterPage() {
         const supabase = createClient();
 
         try {
-            const { error: signUpError } = await supabase.auth.signUp({
+            const { data, error: signUpError } = await supabase.auth.signUp({
                 email,
                 password,
                 options: {
@@ -43,12 +62,28 @@ export default function RegisterPage() {
             });
 
             if (signUpError) {
-                setError(signUpError.message);
+                if (signUpError.message.toLowerCase().includes("rate limit")) {
+                    setError("Giới hạn đăng ký đã đạt mức tối đa (3-4 người/giờ). Vui lòng thử lại sau 1 giờ hoặc liên hệ admin để cấu hình SMTP.");
+                    setCooldown(60);
+                } else {
+                    setError(signUpError.message);
+                }
                 setIsLoading(false);
                 return;
             }
 
+            // If session exists, confirmation is likely OFF in dashboard
+            if (data?.session) {
+                setSuccessMessage("Đăng ký thành công! Đang chuyển hướng...");
+                setTimeout(() => {
+                    router.push("/dashboard");
+                }, 1500);
+                return;
+            }
+
             setSuccessMessage("Đăng ký thành công! Vui lòng kiểm tra email của bạn để xác thực tài khoản.");
+            setCooldown(60);
+
 
             // Optionally redirect after a short delay
             setTimeout(() => {
@@ -104,7 +139,7 @@ export default function RegisterPage() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Email fpt.edu.vn</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Email</label>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
                             <span className="material-symbols-outlined text-[18px]">email</span>
@@ -115,7 +150,7 @@ export default function RegisterPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl pl-11 pr-4 py-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-shadow"
-                            placeholder="mssv@fpt.edu.vn"
+                            placeholder="example@email.com"
                         />
                     </div>
                 </div>
@@ -159,10 +194,10 @@ export default function RegisterPage() {
                 <div className="pt-2">
                     <button
                         type="submit"
-                        disabled={isLoading || !!successMessage}
-                        className={`w-full py-3 px-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 transition-all ${(isLoading || !!successMessage) ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600 hover:-translate-y-0.5'}`}
+                        disabled={isLoading || !!successMessage || cooldown > 0}
+                        className={`w-full py-3 px-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 transition-all ${(isLoading || !!successMessage || cooldown > 0) ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600 hover:-translate-y-0.5'}`}
                     >
-                        {isLoading ? 'Đang đăng ký...' : 'Đăng ký'}
+                        {isLoading ? 'Đang đăng ký...' : cooldown > 0 ? `Vui lòng đợi ${cooldown}s` : 'Đăng ký'}
                     </button>
                 </div>
             </form>
