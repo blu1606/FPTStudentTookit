@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 import PlannerSection from "./planner-section";
 import dynamic from "next/dynamic";
@@ -15,10 +16,17 @@ import ProfileSettingsModal from "@/components/dashboard/profile-settings-modal"
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function DashboardPage() {
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
+    const router = useRouter();
     const [activeSection, setActiveSection] = useState("overview");
     const [pendingAction, setPendingAction] = useState<string | null>(null);
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (!isLoading && !user) {
+            router.push("/auth/login");
+        }
+    }, [user, isLoading, router]);
 
     useEffect(() => {
         // Initial mobile overlay logic can still exist if needed
@@ -31,6 +39,18 @@ export default function DashboardPage() {
         }
         setupMobileMenu();
     }, []);
+
+    // Show nothing while checking auth or if not logged in
+    if (isLoading || !user) {
+        return (
+            <div className="h-screen w-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="size-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-gray-500 font-bold">Đang xác thực...</p>
+                </div>
+            </div>
+        );
+    }
 
     const handleNavClick = (sectionId: string, action?: string) => {
         setActiveSection(sectionId);

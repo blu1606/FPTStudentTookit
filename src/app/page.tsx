@@ -57,7 +57,7 @@ export default function Home() {
             </Link>
             {/* Mobile Menu */}
             <button className="md:hidden size-10 flex items-center justify-center text-[#1d140c] dark:text-white">
-              <span className="material-symbols-outlined">menu</span>
+              <span className="material-icons-round">menu</span>
             </button>
           </div>
         </div>
@@ -391,7 +391,7 @@ export default function Home() {
                       className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:gap-4 transition-all group"
                     >
                       Khám phá thêm
-                      <span className="material-symbols-outlined">
+                      <span className="material-icons-round">
                         arrow_forward
                       </span>
                     </Link>
@@ -415,7 +415,7 @@ export default function Home() {
                     {/* Floating element overlay */}
                     <div className="absolute bottom-6 left-6 right-6 p-4 bg-white/90 dark:bg-gray-800/90 nav-blur rounded-xl border border-white/20 shadow-xl flex items-center gap-4 animate-bounce-slow">
                       <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <span className="material-symbols-outlined">
+                        <span className="material-icons-round">
                           event_available
                         </span>
                       </div>

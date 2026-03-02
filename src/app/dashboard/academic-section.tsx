@@ -16,7 +16,24 @@ export default function AcademicSection() {
     const [isAddPostOpen, setIsAddPostOpen] = useState(false);
     const { subjects, addLesson } = useAcademic();
     const { tasks } = useTasks();
-    const { posts } = useCommunity();
+    const { posts, addComment } = useCommunity();
+    const [expandedPostIds, setExpandedPostIds] = useState<Record<string, boolean>>({});
+    const [commentTexts, setCommentTexts] = useState<Record<string, string>>({});
+
+    const toggleComments = (postId: string) => {
+        setExpandedPostIds(prev => ({ ...prev, [postId]: !prev[postId] }));
+    };
+
+    const handleAddComment = (postId: string) => {
+        const text = commentTexts[postId]?.trim();
+        if (text) {
+            addComment(postId, text);
+            setCommentTexts(prev => ({ ...prev, [postId]: "" }));
+            if (!expandedPostIds[postId]) {
+                setExpandedPostIds(prev => ({ ...prev, [postId]: true }));
+            }
+        }
+    };
 
     const stats = useMemo(() => {
         let averageProgress = 0;
@@ -216,13 +233,62 @@ export default function AcademicSection() {
                                                         <button className="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-semibold group">
                                                             <span className="material-icons-round mr-1 group-hover:scale-110 transition-transform">thumb_up_off_alt</span> {post.likes}
                                                         </button>
-                                                        <button className="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group">
-                                                            <span className="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span> {post.comments} Bình luận
+                                                        <button
+                                                            onClick={() => toggleComments(post.id)}
+                                                            className="flex items-center text-gray-500 hover:text-blue-500 transition-colors text-sm font-semibold group"
+                                                        >
+                                                            <span className="material-icons-round mr-1 group-hover:scale-110 transition-transform">chat_bubble_outline</span> {post.comments.length} Bình luận
                                                         </button>
                                                         <button className="flex items-center text-gray-500 hover:text-gray-700 transition-colors text-sm font-semibold ml-auto">
                                                             <span className="material-icons-round mr-1">share</span> Chia sẻ
                                                         </button>
                                                     </div>
+
+                                                    {/* Comments Section */}
+                                                    {expandedPostIds[post.id] && (
+                                                        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 space-y-4">
+                                                            {post.comments.length > 0 ? (
+                                                                post.comments.map(comment => (
+                                                                    <div key={comment.id} className="flex gap-3">
+                                                                        <Image src={comment.authorAvatar} alt={comment.authorName} width={32} height={32} className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-700" unoptimized />
+                                                                        <div className="flex-1 bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+                                                                            <div className="flex justify-between items-baseline mb-1">
+                                                                                <span className="font-bold text-sm text-gray-900 dark:text-white">{comment.authorName}</span>
+                                                                                <span className="text-xs text-gray-500">{comment.timePosted}</span>
+                                                                            </div>
+                                                                            <p className="text-sm text-gray-700 dark:text-gray-300">{comment.content}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                ))
+                                                            ) : (
+                                                                <p className="text-sm text-gray-500 text-center py-2">Chưa có bình luận nào. Hãy là người đầu tiên!</p>
+                                                            )}
+
+                                                            {/* Add Comment Input */}
+                                                            <div className="flex gap-3 mt-4 items-start border-t border-gray-50 dark:border-gray-800 pt-4">
+                                                                <Image src="https://i.pravatar.cc/100?img=11" alt="You" width={32} height={32} className="w-8 h-8 rounded-full border border-gray-200" unoptimized />
+                                                                <div className="flex-1 flex flex-col sm:flex-row gap-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        placeholder="Viết bình luận..."
+                                                                        className="flex-1 bg-gray-100 dark:bg-gray-800 border-none rounded-xl py-2 px-4 text-sm focus:ring-2 focus:ring-primary dark:text-white"
+                                                                        value={commentTexts[post.id] || ""}
+                                                                        onChange={(e) => setCommentTexts(prev => ({ ...prev, [post.id]: e.target.value }))}
+                                                                        onKeyDown={(e) => {
+                                                                            if (e.key === 'Enter') handleAddComment(post.id);
+                                                                        }}
+                                                                    />
+                                                                    <button
+                                                                        onClick={() => handleAddComment(post.id)}
+                                                                        disabled={!commentTexts[post.id]?.trim()}
+                                                                        className="bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-xl text-sm font-bold transition-colors whitespace-nowrap"
+                                                                    >
+                                                                        Gửi
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>

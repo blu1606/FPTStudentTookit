@@ -19,7 +19,7 @@ type AssignmentsSectionProps = {
 
 export default function AssignmentsSection({ pendingAction, clearAction }: AssignmentsSectionProps = {}) {
     const [view, setView] = useState<"kanban" | "list">("kanban");
-    const { tasks, setTasks } = useTasks();
+    const { tasks, isLoading, addTask, updateTask, setTasks } = useTasks();
     const { subjects } = useAcademic();
     const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
     const [selectedPriorities, setSelectedPriorities] = useState<string[]>(["High", "Medium", "Low"]);
@@ -88,14 +88,15 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
         });
     };
 
-    const handleSaveTask = (updatedData: Partial<Task>) => {
-        setTasks(prev => {
-            const exists = prev.some(t => t.id === updatedData.id);
-            if (exists) {
-                return prev.map(t => t.id === updatedData.id ? { ...t, ...updatedData } as Task : t);
-            }
-            return [...prev, updatedData as Task];
-        });
+
+
+    const handleSaveTask = async (updatedData: Partial<Task>) => {
+        const existingTask = tasks.find(t => t.id === updatedData.id);
+        if (existingTask) {
+            await updateTask({ ...existingTask, ...updatedData } as Task);
+        } else {
+            await addTask(updatedData as Task);
+        }
         setIsEditModalOpen(false);
     };
 

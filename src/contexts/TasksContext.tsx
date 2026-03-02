@@ -94,13 +94,12 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         fetchTasks();
     }, [user, useMockData, supabase]);
 
-    // Save to local storage when using mock data
+    // Save to local storage whenever tasks change
     useEffect(() => {
-        const isGuest = typeof document !== 'undefined' && document.cookie.includes('guest_mode=true');
-        if (!isLoading && (useMockData || isGuest)) {
+        if (!isLoading) {
             localStorage.setItem("planner_tasks", JSON.stringify(tasks));
         }
-    }, [tasks, isLoading, useMockData]);
+    }, [tasks, isLoading]);
 
     const addTask = async (task: Task) => {
         if (useMockData) {
@@ -137,7 +136,11 @@ export function TasksProvider({ children }: { children: ReactNode }) {
                     source: "Tự học",
                     submittedOn: data.submitted_on || undefined,
                 };
-                setTasks((prev) => [...prev, newTask]);
+                setTasks((prev) => {
+                    const exists = prev.some(t => t.id === task.id);
+                    if (exists) return prev.map(t => t.id === task.id ? newTask : t);
+                    return [...prev, newTask];
+                });
             }
         } catch (err) {
             console.error("Error adding task:", err);
