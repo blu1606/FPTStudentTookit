@@ -32,7 +32,7 @@ export default function UserProfileCard({ userName, studentId, avatarUrl, onSett
                         if (onSettingsClick) onSettingsClick();
                     }}
                 >
-                    <span className="material-icons-round text-sm">settings</span>
+                    <span className="material-symbols-outlined text-sm">settings</span>
                 </button>
             </div>
         </div>

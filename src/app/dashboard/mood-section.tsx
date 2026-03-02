@@ -103,7 +103,7 @@ export default function MoodSection() {
             <section id="mood" className="dashboard-section fade-in">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                     <div className="flex items-center gap-3">
-                        <span className="material-icons-round text-3xl text-primary">sentiment_satisfied</span>
+                        <span className="material-symbols-outlined text-3xl text-primary">sentiment_satisfied</span>
                         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">Trợ lý cảm xúc</h2>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ export default function MoodSection() {
                     <div className="lg:col-span-4 space-y-6">
                         <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
                             <h3 className="font-bold text-lg text-gray-800 dark:text-white flex items-center mb-6">
-                                <span className="material-icons-round text-primary mr-2">history</span>
+                                <span className="material-symbols-outlined text-primary mr-2">history</span>
                                 Lịch sử cảm xúc
                             </h3>
 
@@ -188,14 +188,14 @@ export default function MoodSection() {
                                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Gợi ý cho bạn</h4>
                                 <div className="grid grid-cols-2 gap-3">
                                     <button className="flex flex-col items-center justify-center p-4 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-2xl transition-colors group">
-                                        <span className="material-icons-round text-3xl text-purple-500 mb-1 group-hover:scale-110 transition-transform">music_note</span>
+                                        <span className="material-symbols-outlined text-3xl text-purple-500 mb-1 group-hover:scale-110 transition-transform">music_note</span>
                                         <span className="text-xs font-bold text-purple-700 dark:text-purple-300">Lo-fi Chill</span>
                                     </button>
                                     <button
                                         onClick={() => setIsBreathingModalOpen(true)}
                                         className="flex flex-col items-center justify-center p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-2xl transition-colors group"
                                     >
-                                        <span className="material-icons-round text-3xl text-green-500 mb-1 group-hover:scale-110 transition-transform">self_improvement</span>
+                                        <span className="material-symbols-outlined text-3xl text-green-500 mb-1 group-hover:scale-110 transition-transform">self_improvement</span>
                                         <span className="text-xs font-bold text-green-700 dark:text-green-300">Thở</span>
                                     </button>
                                 </div>
@@ -210,7 +210,7 @@ export default function MoodSection() {
                             <div className="p-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-800 z-10">
                                 <div className="flex items-center gap-3">
                                     <div className="relative px-2">
-                                        <span className="material-icons-round text-4xl text-gray-400">smart_toy</span>
+                                        <span className="material-symbols-outlined text-4xl text-gray-400">smart_toy</span>
                                         <div className="absolute bottom-1 right-2 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full" />
                                     </div>
                                     <div>
@@ -237,7 +237,7 @@ export default function MoodSection() {
                                     msg.role === "assistant" ? (
                                         <div key={msg.id} className="flex items-end gap-3 max-w-[85%] fade-in">
                                             <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center flex-shrink-0 shadow-sm border border-white dark:border-gray-600 mb-1">
-                                                <span className="material-icons-round text-gray-500 text-[20px]">smart_toy</span>
+                                                <span className="material-symbols-outlined text-gray-500 text-[20px]">smart_toy</span>
                                             </div>
                                             <div className="flex flex-col gap-1">
                                                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 text-gray-800 dark:text-gray-200 shadow-sm border border-gray-100 dark:border-gray-700 text-[15px] leading-relaxed whitespace-pre-wrap">
@@ -262,7 +262,7 @@ export default function MoodSection() {
                                 {isLoading && (
                                     <div className="flex items-end gap-3 max-w-[85%] fade-in">
                                         <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center flex-shrink-0 shadow-sm border border-white dark:border-gray-600 mb-1">
-                                            <span className="material-icons-round text-gray-500 text-[20px]">smart_toy</span>
+                                            <span className="material-symbols-outlined text-gray-500 text-[20px]">smart_toy</span>
                                         </div>
                                         <div className="bg-white dark:bg-gray-800 rounded-2xl px-5 py-4 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-1.5">
                                             <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
@@ -294,7 +294,7 @@ export default function MoodSection() {
                                 {/* Input Field */}
                                 <div className="p-4 py-4 flex items-center gap-3">
                                     <div className="flex-1 bg-gray-50 dark:bg-background-dark border border-gray-200 dark:border-gray-700 rounded-full flex items-center px-4 py-2 hover:border-primary/50 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-inner">
-                                        <span className="material-icons-round text-gray-400 mr-2 text-xl">sentiment_satisfied</span>
+                                        <span className="material-symbols-outlined text-gray-400 mr-2 text-xl">sentiment_satisfied</span>
                                         <input
                                             ref={inputRef}
                                             type="text"
@@ -311,7 +311,7 @@ export default function MoodSection() {
                                         disabled={isLoading || !input.trim()}
                                         className="bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md transform hover:scale-105 active:scale-95 transition-all"
                                     >
-                                        <span className="material-icons-round ml-1">send</span>
+                                        <span className="material-symbols-outlined ml-1">send</span>
                                     </button>
                                 </div>
                             </div>

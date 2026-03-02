@@ -39,7 +39,7 @@ export function CalendarEventCard({ event, index, pxPerHour }: Props) {
                         </span>
 
                         {event.isUrgent && (
-                            <span className="material-icons-round text-rose-500 text-sm animate-pulse">priority_high</span>
+                            <span className="material-symbols-outlined text-rose-500 text-sm animate-pulse">priority_high</span>
                         )}
                     </div>
                     <h4 className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-1 leading-tight truncate">
@@ -47,7 +47,7 @@ export function CalendarEventCard({ event, index, pxPerHour }: Props) {
                     </h4>
                     {event.location && (
                         <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
-                            <span className="material-icons-round text-[10px]">location_on</span>
+                            <span className="material-symbols-outlined text-[10px]">location_on</span>
                             <span className="truncate">{event.location}</span>
                         </div>
                     )}

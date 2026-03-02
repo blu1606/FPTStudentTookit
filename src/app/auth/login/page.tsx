@@ -54,7 +54,7 @@ export default function LoginPage() {
         <div className="bg-white dark:bg-gray-800 p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 animate-in fade-in zoom-in-95 duration-300">
             <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-2xl mb-4">
-                    <span className="material-icons-round text-primary text-3xl">task_alt</span>
+                    <span className="material-symbols-outlined text-primary text-3xl">task_alt</span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                     Smart Time
@@ -68,7 +68,7 @@ export default function LoginPage() {
                     type="button"
                     className="w-full py-4 px-4 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 font-bold rounded-xl shadow-sm hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors flex flex-col items-center justify-center gap-1"
                 >
-                    <span className="flex items-center gap-2 text-lg"><span className="material-icons-round">explore</span> Tiếp tục như Khách</span>
+                    <span className="flex items-center gap-2 text-lg"><span className="material-symbols-outlined">explore</span> Tiếp tục như Khách</span>
                     <span className="text-xs font-normal opacity-80">(* Khám phá các tính năng với dữ liệu mock)</span>
                 </button>
 
@@ -83,7 +83,7 @@ export default function LoginPage() {
                         type="button"
                         className="w-full py-3 px-4 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl shadow-sm hover:shadow transition-shadow flex items-center justify-center gap-2"
                     >
-                        <span className="material-icons-round text-primary text-xl">mail</span>
+                        <span className="material-symbols-outlined text-primary text-xl">mail</span>
                         Đăng nhập bằng Email
                     </button>
                 ) : (
@@ -97,7 +97,7 @@ export default function LoginPage() {
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Email của bạn</label>
                             <div className="relative">
                                 <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                                    <span className="material-icons-round text-[18px]">email</span>
+                                    <span className="material-symbols-outlined text-[18px]">email</span>
                                 </span>
                                 <input
                                     type="email"
@@ -117,7 +117,7 @@ export default function LoginPage() {
                             </div>
                             <div className="relative">
                                 <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                                    <span className="material-icons-round text-[18px]">lock</span>
+                                    <span className="material-symbols-outlined text-[18px]">lock</span>
                                 </span>
                                 <input
                                     type="password"

@@ -39,7 +39,7 @@ export default function TodaySchedule() {
                                     <div>
                                         <h4 className="font-bold text-gray-800 dark:text-white text-lg">{event.title}</h4>
                                         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 flex items-center">
-                                            <span className="material-icons-round text-sm mr-1">schedule</span>
+                                            <span className="material-symbols-outlined text-sm mr-1">schedule</span>
                                             {format(event.startTime, 'HH:mm')} - {format(event.endTime, 'HH:mm')}
                                         </p>
                                     </div>

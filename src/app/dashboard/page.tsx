@@ -91,7 +91,7 @@ export default function DashboardPage() {
                                 }`}
                             onClick={() => handleNavClick(item.id)}
                         >
-                            <span className={`material-icons-round mr-3 transition-transform duration-200 ${activeSection === item.id ? "scale-110" : "group-hover:scale-110"}`}>
+                            <span className={`material-symbols-outlined mr-3 transition-transform duration-200 ${activeSection === item.id ? "scale-110" : "group-hover:scale-110"}`}>
                                 {item.icon}
                             </span>
                             <span className="font-bold">{item.label}</span>
@@ -113,7 +113,7 @@ export default function DashboardPage() {
                 <header className="h-16 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6 z-10 glass sticky top-0">
                     <div className="flex items-center">
                         <button id="mobile-menu-btn" className="md:hidden mr-4 text-gray-500 hover:text-primary transition-colors">
-                            <span className="material-icons-round">menu</span>
+                            <span className="material-symbols-outlined">menu</span>
                         </button>
                         <h1 id="page-title" className="text-xl font-extrabold text-gray-800 dark:text-white flex items-center">
                             {activeSection === "overview" && "Dashboard"}
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="flex items-center space-x-4">
                         <button className="relative p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
-                            <span className="material-icons-round">notifications</span>
+                            <span className="material-symbols-outlined">notifications</span>
                             <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-danger rounded-full border-2 border-surface-light dark:border-surface-dark animate-pulse"></span>
                         </button>
                         <ThemeToggle className="theme-toggle p-2 text-gray-400 hover:text-warning transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" />

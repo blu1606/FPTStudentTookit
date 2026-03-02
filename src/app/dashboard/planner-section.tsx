@@ -160,14 +160,14 @@ export default function PlannerSection({ pendingAction, clearAction }: PlannerSe
                     {/* Date Navigation */}
                     <div className="flex items-center gap-3">
                         <button onClick={goPrev} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full transition-colors" aria-label="Trước">
-                            <span className="material-icons-round text-gray-600 dark:text-gray-300">chevron_left</span>
+                            <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">chevron_left</span>
                         </button>
                         <div className="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2 min-w-max">
-                            <span className="material-icons-round text-primary text-base">calendar_today</span>
+                            <span className="material-symbols-outlined text-primary text-base">calendar_today</span>
                             <span>{dateLabel}</span>
                         </div>
                         <button onClick={goNext} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full transition-colors" aria-label="Sau">
-                            <span className="material-icons-round text-gray-600 dark:text-gray-300">chevron_right</span>
+                            <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">chevron_right</span>
                         </button>
                         <button onClick={() => setCurrentDate(new Date())} className="px-3 py-1.5 text-xs font-bold bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
                             Hôm nay
@@ -175,7 +175,7 @@ export default function PlannerSection({ pendingAction, clearAction }: PlannerSe
                     </div>
 
                     <button className="p-2 text-gray-500 hover:text-primary transition-colors" aria-label="Lọc">
-                        <span className="material-icons-round">tune</span>
+                        <span className="material-symbols-outlined">tune</span>
                     </button>
                 </div>
 
@@ -328,7 +328,7 @@ export default function PlannerSection({ pendingAction, clearAction }: PlannerSe
                 className="absolute bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-xl hover:bg-orange-600 transition-transform hover:scale-110 active:scale-95 flex items-center justify-center z-50 group"
                 aria-label="Thêm lịch mới"
             >
-                <span className="material-icons-round text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
+                <span className="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
                 <div className="absolute right-full mr-4 bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Thêm lịch
                 </div>

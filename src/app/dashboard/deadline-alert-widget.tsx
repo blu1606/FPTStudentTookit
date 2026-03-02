@@ -42,7 +42,7 @@ export default function DeadlineAlertWidget({ onNavigate }: DeadlineAlertWidgetP
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-danger/20 dark:border-danger/30 overflow-hidden mt-6 relative group h-80 flex flex-col">
             <div className="bg-danger/5 dark:bg-danger/10 p-4 border-b border-danger/10 dark:border-danger/20 flex items-center justify-between">
                 <h3 className="text-danger dark:text-danger font-bold flex items-center">
-                    <span className="material-icons-round mr-2 animate-pulse">campaign</span>
+                    <span className="material-symbols-outlined mr-2 animate-pulse">campaign</span>
                     DEADLINE ALERT!
                 </h3>
                 <span className="bg-white dark:bg-gray-800 text-danger text-xs font-bold px-2 py-1 rounded shadow-sm">{urgentTasks.length} Priority</span>
@@ -58,7 +58,7 @@ export default function DeadlineAlertWidget({ onNavigate }: DeadlineAlertWidgetP
                         <div className="pl-2 flex justify-between flex-wrap gap-2 text-xs">
                             <span className="text-gray-500 dark:text-gray-400 font-medium">Hạn: {formatDeadline(task.deadline)}</span>
                             <span className="font-bold text-danger flex items-center">
-                                <span className="material-icons-round text-[14px] mr-1">timer</span>
+                                <span className="material-symbols-outlined text-[14px] mr-1">timer</span>
                                 {formatTimeLeft(task.deadline)}
                             </span>
                         </div>

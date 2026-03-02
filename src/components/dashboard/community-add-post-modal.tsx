@@ -39,14 +39,14 @@ export function CommunityAddPostModal({ isOpen, onClose }: ModalProps) {
             <div className="bg-white dark:bg-gray-800 w-full max-w-lg rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col slide-up">
                 <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
-                        <span className="material-icons-round text-primary mr-2">edit_document</span>
+                        <span className="material-symbols-outlined text-primary mr-2">edit_document</span>
                         Tạo bài viết mới
                     </h2>
                     <button
                         onClick={onClose}
                         className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-full transition-colors"
                     >
-                        <span className="material-icons-round text-sm">close</span>
+                        <span className="material-symbols-outlined text-sm">close</span>
                     </button>
                 </div>
 
@@ -57,7 +57,7 @@ export function CommunityAddPostModal({ isOpen, onClose }: ModalProps) {
                             Tiêu đề <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 material-icons-round text-gray-400 text-sm">short_text</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-gray-400 text-sm">short_text</span>
                             <input
                                 type="text"
                                 required
@@ -76,7 +76,7 @@ export function CommunityAddPostModal({ isOpen, onClose }: ModalProps) {
                             Nhãn (Tags)
                         </label>
                         <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 material-icons-round text-gray-400 text-sm">sell</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-gray-400 text-sm">sell</span>
                             <input
                                 type="text"
                                 value={tagsInput}
@@ -119,7 +119,7 @@ export function CommunityAddPostModal({ isOpen, onClose }: ModalProps) {
                         className="px-6 py-2.5 text-sm font-bold text-white bg-primary hover:bg-orange-600 rounded-xl shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 flex items-center justify-center gap-2"
                     >
                         <span>Đăng bài</span>
-                        <span className="material-icons-round text-[18px]">send</span>
+                        <span className="material-symbols-outlined text-[18px]">send</span>
                     </button>
                 </div>
             </div>

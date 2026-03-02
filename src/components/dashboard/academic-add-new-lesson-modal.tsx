@@ -76,7 +76,7 @@ export function AcademicAddNewLessonModal({ isOpen, onClose, onAdd }: Props) {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl font-extrabold text-gray-900 dark:text-white flex items-center gap-2">
-                        <span className="material-icons-round text-blue-500">add_circle</span>
+                        <span className="material-symbols-outlined text-blue-500">add_circle</span>
                         Thêm bài học mới
                     </h2>
                     <button
@@ -84,7 +84,7 @@ export function AcademicAddNewLessonModal({ isOpen, onClose, onAdd }: Props) {
                         className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 transition-colors"
                         aria-label="Đóng"
                     >
-                        <span className="material-icons-round">close</span>
+                        <span className="material-symbols-outlined">close</span>
                     </button>
                 </div>
 
@@ -149,7 +149,7 @@ export function AcademicAddNewLessonModal({ isOpen, onClose, onAdd }: Props) {
                                             : "bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-300"
                                         }`}
                                 >
-                                    <span className="material-icons-round text-base">{lt.icon}</span>
+                                    <span className="material-symbols-outlined text-base">{lt.icon}</span>
                                     <span className="truncate">{lt.label}</span>
                                 </button>
                             ))}

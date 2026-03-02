@@ -66,13 +66,13 @@ export function BreathingModal({ isOpen, onClose }: BreathingModalProps) {
                     onClick={onClose}
                     className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-full transition-colors z-10 flex items-center justify-center"
                 >
-                    <span className="material-icons-round text-sm">close</span>
+                    <span className="material-symbols-outlined text-sm">close</span>
                 </button>
 
                 {step === "select_time" ? (
                     <div className="text-center relative z-10 fade-in">
                         <div className="w-20 h-20 bg-green-50 dark:bg-green-900/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-4 ring-green-50 dark:ring-green-900/10">
-                            <span className="material-icons-round text-4xl">self_improvement</span>
+                            <span className="material-symbols-outlined text-4xl">self_improvement</span>
                         </div>
                         <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white mb-2">Cool Down Menu</h2>
                         <p className="text-gray-500 dark:text-gray-400 text-sm mb-8 px-4 leading-relaxed">
@@ -94,7 +94,7 @@ export function BreathingModal({ isOpen, onClose }: BreathingModalProps) {
                 ) : (
                     <div className="text-center py-6 relative z-10 fade-in flex flex-col items-center justify-center min-h-[320px]">
                         <div className="inline-flex items-center justify-center bg-gray-100 dark:bg-gray-700 px-4 py-1.5 rounded-full mb-8">
-                            <span className="material-icons-round text-gray-500 dark:text-gray-400 text-sm mr-2">timer</span>
+                            <span className="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm mr-2">timer</span>
                             <span className="text-lg font-bold text-gray-700 dark:text-gray-200 font-mono tracking-widest">{formatTime(timeLeft)}</span>
                         </div>
 

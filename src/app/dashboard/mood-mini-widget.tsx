@@ -9,7 +9,7 @@ export default function MoodMiniWidget({ onNavigate }: MoodMiniWidgetProps) {
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 flex flex-col h-80">
             <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-gray-800 dark:text-white flex items-center">
-                    <span className="material-icons-round text-warning mr-2">sentiment_satisfied</span>
+                    <span className="material-symbols-outlined text-warning mr-2">sentiment_satisfied</span>
                     Trợ lý cảm xúc
                 </h3>
             </div>
@@ -35,7 +35,7 @@ export default function MoodMiniWidget({ onNavigate }: MoodMiniWidgetProps) {
             <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center">
                 <input type="text" placeholder="Nhập cảm xúc..." className="flex-1 bg-gray-50 dark:bg-gray-800 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary dark:text-white transition-all" />
                 <button className="ml-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-md hover:bg-orange-600 transition-colors transform active:scale-95" onClick={() => onNavigate("mood")}>
-                    <span className="material-icons-round text-lg">send</span>
+                    <span className="material-symbols-outlined text-lg">send</span>
                 </button>
             </div>
         </div>

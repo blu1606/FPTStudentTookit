@@ -39,7 +39,7 @@ export function SubjectAddModal({ onClose, onSuccess }: SubjectAddModalProps) {
                         Thêm môn học mới
                     </h2>
                     <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors">
-                        <span className="material-icons-round">close</span>
+                        <span className="material-symbols-outlined">close</span>
                     </button>
                 </div>
 
@@ -80,11 +80,11 @@ export function SubjectAddModal({ onClose, onSuccess }: SubjectAddModalProps) {
                     <button type="submit" form="subject-form" disabled={isSubmitting} className="px-5 py-2 rounded-xl font-bold text-white bg-primary hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition-transform transform hover:-translate-y-0.5 flex items-center gap-2 disabled:opacity-50 disabled:hover:translate-y-0">
                         {isSubmitting ? (
                             <>
-                                <span className="material-icons-round text-sm animate-spin">refresh</span> Đang lưu...
+                                <span className="material-symbols-outlined text-sm animate-spin">refresh</span> Đang lưu...
                             </>
                         ) : (
                             <>
-                                <span className="material-icons-round text-sm">save</span> Lưu
+                                <span className="material-symbols-outlined text-sm">save</span> Lưu
                             </>
                         )}
                     </button>

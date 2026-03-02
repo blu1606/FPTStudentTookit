@@ -24,7 +24,7 @@ export function KanbanColumn({ id, title, count, colorIndicatorClass, pulse, hea
                     </span>
                 </h3>
                 <button onClick={onAdd} className="text-gray-400 hover:text-primary bg-white hover:bg-orange-50 dark:bg-gray-700 dark:hover:bg-orange-900/30 rounded-lg p-1 transition-all shadow-sm transform hover:scale-110 active:scale-95">
-                    <span className="material-icons-round text-lg">add</span>
+                    <span className="material-symbols-outlined text-lg">add</span>
                 </button>
             </div>
             <Droppable droppableId={id}>

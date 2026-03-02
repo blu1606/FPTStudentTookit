@@ -62,11 +62,11 @@ export function TaskCard({ task, subject, index, onClick }: TaskCardProps) {
                             <div className="flex items-center gap-2">
                                 {task.status === "Done" ? (
                                     <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-400 flex items-center justify-center">
-                                        <span className="material-icons-round text-lg">check_circle</span>
+                                        <span className="material-symbols-outlined text-lg">check_circle</span>
                                     </div>
                                 ) : (
                                     <div className={`w-8 h-8 rounded-lg ${subject.bg} ${subject.text} flex items-center justify-center`}>
-                                        <span className="material-icons-round text-lg">{subject.icon}</span>
+                                        <span className="material-symbols-outlined text-lg">{subject.icon}</span>
                                     </div>
 
                                 )}
@@ -78,12 +78,12 @@ export function TaskCard({ task, subject, index, onClick }: TaskCardProps) {
                             {/* Right corner indicators */}
                             {task.status === "Done" ? (
                                 <div className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                    <span className="material-icons-round text-sm">done</span>
+                                    <span className="material-symbols-outlined text-sm">done</span>
                                 </div>
                             ) : isPriorityHigh ? (
                                 <div className="bg-red-100 dark:bg-red-900/40 text-red-600 text-[10px] font-bold px-1.5 py-0.5 rounded">CAO</div>
                             ) : (
-                                <button className="text-gray-300 hover:text-gray-500"><span className="material-icons-round text-lg">more_horiz</span></button>
+                                <button className="text-gray-300 hover:text-gray-500"><span className="material-symbols-outlined text-lg">more_horiz</span></button>
                             )}
                         </div>
 

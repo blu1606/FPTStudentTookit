@@ -31,11 +31,11 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50">
                     <h2 className="text-xl font-extrabold text-gray-900 dark:text-white flex items-center gap-2">
-                        <span className="material-icons-round text-primary">manage_accounts</span>
+                        <span className="material-symbols-outlined text-primary">manage_accounts</span>
                         Cài đặt tài khoản
                     </h2>
                     <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors">
-                        <span className="material-icons-round">close</span>
+                        <span className="material-symbols-outlined">close</span>
                     </button>
                 </div>
 
@@ -110,7 +110,7 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                         onClick={signOut}
                         className="flex items-center gap-2 text-danger hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-bold transition-colors px-3 py-2 rounded-lg hover:bg-danger/10"
                     >
-                        <span className="material-icons-round text-[18px]">logout</span>
+                        <span className="material-symbols-outlined text-[18px]">logout</span>
                         Đăng xuất
                     </button>
 
@@ -123,7 +123,7 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                             disabled={isSaving}
                             className={`px-5 py-2 rounded-xl font-bold text-white shadow-lg transition-transform transform flex items-center gap-2 ${isSaving ? 'bg-primary/70 cursor-not-allowed' : 'bg-primary hover:bg-orange-600 shadow-primary/30 hover:-translate-y-0.5'}`}
                         >
-                            <span className="material-icons-round text-sm">{isSaving ? 'sync' : 'save'}</span>
+                            <span className="material-symbols-outlined text-sm">{isSaving ? 'sync' : 'save'}</span>
                             {isSaving ? 'Đang lưu...' : 'Lưu cài đặt'}
                         </button>
                     </div>

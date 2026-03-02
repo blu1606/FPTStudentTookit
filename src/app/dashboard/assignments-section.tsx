@@ -120,7 +120,7 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
             <div className="flex-shrink-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md sticky top-0 z-10 border-b border-orange-100 dark:border-gray-700 px-6 py-4 flex items-center justify-between rounded-t-3xl">
                 <div className="flex items-center gap-4">
                     <h2 className="text-2xl font-extrabold text-gray-800 dark:text-white flex items-center gap-2">
-                        <span className="material-icons-round text-primary text-3xl">view_kanban</span>
+                        <span className="material-symbols-outlined text-primary text-3xl">view_kanban</span>
                         Deadline Board
                     </h2>
                 </div>
@@ -129,24 +129,24 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                         <button
                             onClick={() => setView("list")}
                             className={`px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-1 transition-all ${view === "list" ? "bg-white dark:bg-gray-600 text-primary dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"}`}>
-                            <span className="material-icons-round text-lg">format_list_bulleted</span>
+                            <span className="material-symbols-outlined text-lg">format_list_bulleted</span>
                             List
                         </button>
                         <button
                             onClick={() => setView("kanban")}
                             className={`px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-1 transition-all ${view === "kanban" ? "bg-white dark:bg-gray-600 text-primary dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"}`}>
-                            <span className="material-icons-round text-lg">view_kanban</span>
+                            <span className="material-symbols-outlined text-lg">view_kanban</span>
                             Kanban
                         </button>
                     </div>
                     <div className="relative hidden lg:block">
-                        <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
                         <input className="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary w-64 text-gray-700 dark:text-gray-200 placeholder-gray-400" placeholder="Search tasks..." type="text" />
                     </div>
                     <button
                         onClick={() => { setEditingTask(undefined); setIsEditModalOpen(true); }}
                         className="bg-primary hover:bg-orange-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg shadow-orange-500/30 flex items-center transition-all transform hover:-translate-y-0.5">
-                        <span className="material-icons-round mr-2">add</span> New Task
+                        <span className="material-symbols-outlined mr-2">add</span> New Task
                     </button>
                 </div>
             </div>
@@ -157,7 +157,7 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                     <div className="p-6 border-b border-gray-100 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 z-10">
                         <div className="flex items-center justify-between">
                             <h3 className="font-bold text-gray-800 dark:text-white flex items-center gap-2">
-                                <span className="material-icons-round text-primary">tune</span> Filters
+                                <span className="material-symbols-outlined text-primary">tune</span> Filters
                             </h3>
                             <button onClick={resetFilters} className="text-xs font-bold text-gray-400 hover:text-primary">Reset</button>
                         </div>
@@ -165,7 +165,7 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                     <div className="p-6 space-y-8">
                         <div>
                             <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                                <span className="material-icons-round text-sm">school</span> Subject
+                                <span className="material-symbols-outlined text-sm">school</span> Subject
                             </h4>
                             <div className="space-y-3">
                                 {subjects.map((subject) => {
@@ -187,7 +187,7 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                         </div>
                         <div>
                             <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                                <span className="material-icons-round text-sm">flag</span> Priority
+                                <span className="material-symbols-outlined text-sm">flag</span> Priority
                             </h4>
                             <div className="space-y-3">
                                 <label className="flex items-center gap-3 cursor-pointer group">
@@ -300,7 +300,7 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                                                     <td className="px-6 py-4 font-bold text-gray-900 dark:text-white max-w-[300px] truncate">{task.title}</td>
                                                     <td className="px-6 py-4">
                                                         <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
-                                                            <span className="material-icons-round text-[14px]">{subject.icon}</span> {subject.name}
+                                                            <span className="material-symbols-outlined text-[14px]">{subject.icon}</span> {subject.name}
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-4">

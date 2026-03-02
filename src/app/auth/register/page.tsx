@@ -66,7 +66,7 @@ export default function RegisterPage() {
         <div className="bg-white dark:bg-gray-800 p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 animate-in fade-in zoom-in-95 duration-300">
             <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-2xl mb-4">
-                    <span className="material-icons-round text-primary text-3xl">person_add</span>
+                    <span className="material-symbols-outlined text-primary text-3xl">person_add</span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                     Tạo tài khoản
@@ -90,7 +90,7 @@ export default function RegisterPage() {
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Họ và tên</label>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                            <span className="material-icons-round text-[18px]">badge</span>
+                            <span className="material-symbols-outlined text-[18px]">badge</span>
                         </span>
                         <input
                             type="text"
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Email fpt.edu.vn</label>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                            <span className="material-icons-round text-[18px]">email</span>
+                            <span className="material-symbols-outlined text-[18px]">email</span>
                         </span>
                         <input
                             type="email"
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Mật khẩu</label>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                            <span className="material-icons-round text-[18px]">lock</span>
+                            <span className="material-symbols-outlined text-[18px]">lock</span>
                         </span>
                         <input
                             type="password"
@@ -142,7 +142,7 @@ export default function RegisterPage() {
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Xác nhận mật khẩu</label>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                            <span className="material-icons-round text-[18px]">lock_clock</span>
+                            <span className="material-symbols-outlined text-[18px]">lock_clock</span>
                         </span>
                         <input
                             type="password"

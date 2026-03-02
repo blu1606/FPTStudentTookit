@@ -72,7 +72,7 @@ export function CalendarAddEventModal({ isOpen, defaultDate, onClose, onAddEvent
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl font-extrabold text-gray-900 dark:text-white flex items-center gap-2">
-                        <span className="material-icons-round text-primary">add_circle</span>
+                        <span className="material-symbols-outlined text-primary">add_circle</span>
                         Thêm lịch mới
                     </h2>
                     <button
@@ -80,7 +80,7 @@ export function CalendarAddEventModal({ isOpen, defaultDate, onClose, onAddEvent
                         className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                         aria-label="Đóng"
                     >
-                        <span className="material-icons-round">close</span>
+                        <span className="material-symbols-outlined">close</span>
                     </button>
                 </div>
 

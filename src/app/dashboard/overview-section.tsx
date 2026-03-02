@@ -28,10 +28,10 @@ export default function OverviewSection({ onNavigate }: OverviewSectionProps) {
                     </div>
                     <div className="mt-4 md:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                         <button onClick={() => onNavigate('planner', 'create_event')} className="bg-white/20 text-white border border-white/50 px-5 py-2.5 rounded-xl font-bold shadow-md hover:bg-white hover:text-primary transition-colors flex items-center transform hover:scale-105 active:scale-95 duration-200">
-                            <span className="material-icons-round mr-2 text-sm">event</span> Tạo lịch học
+                            <span className="material-symbols-outlined mr-2 text-sm">event</span> Tạo lịch học
                         </button>
                         <button onClick={() => onNavigate('assignments', 'create_task')} className="bg-white text-primary px-5 py-2.5 rounded-xl font-bold shadow-md hover:bg-gray-50 transition-colors flex items-center transform hover:scale-105 active:scale-95 duration-200">
-                            <span className="material-icons-round mr-2 text-sm">add_task</span> Tạo deadline
+                            <span className="material-symbols-outlined mr-2 text-sm">add_task</span> Tạo deadline
                         </button>
                     </div>
                 </div>
