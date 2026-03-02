@@ -235,8 +235,9 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                                     onAdd={() => { setEditingTask(undefined); setIsEditModalOpen(true); }}
                                 >
                                     {todoTasks.map((task, index) => (
-                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, colorClass: '', bgColorClass: '', icon: 'book', count: 0 }} onClick={() => setSelectedDetailTask(task)} />
+                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, bg: '', text: '', icon: 'book', code: '' }} onClick={() => setSelectedDetailTask(task)} />
                                     ))}
+
                                 </KanbanColumn>
 
                                 {/* Column 2: In Progress */}
@@ -251,8 +252,9 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                                     onAdd={() => { setEditingTask(undefined); setIsEditModalOpen(true); }}
                                 >
                                     {inProgressTasks.map((task, index) => (
-                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, colorClass: '', bgColorClass: '', icon: 'book', count: 0 }} onClick={() => setSelectedDetailTask(task)} />
+                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, bg: '', text: '', icon: 'book', code: '' }} onClick={() => setSelectedDetailTask(task)} />
                                     ))}
+
                                 </KanbanColumn>
 
                                 {/* Column 3: Done */}
@@ -266,8 +268,9 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                                     onAdd={() => { setEditingTask(undefined); setIsEditModalOpen(true); }}
                                 >
                                     {doneTasks.map((task, index) => (
-                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, colorClass: '', bgColorClass: '', icon: 'book', count: 0 }} onClick={() => setSelectedDetailTask(task)} />
+                                        <TaskCard key={task.id} task={task} index={index} subject={subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, bg: '', text: '', icon: 'book', code: '' }} onClick={() => setSelectedDetailTask(task)} />
                                     ))}
+
                                 </KanbanColumn>
                             </div>
                         </DragDropContext>
@@ -289,7 +292,8 @@ export default function AssignmentsSection({ pendingAction, clearAction }: Assig
                                     </thead>
                                     <tbody className="divide-y divide-gray-100 dark:divide-gray-700/80">
                                         {filteredTasks.map(task => {
-                                            const subject = subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, colorClass: '', bgColorClass: '', icon: 'book', count: 0 };
+                                            const subject = subjects.find(s => s.id === task.subjectId) || { id: task.subjectId, name: 'Loading...', progress: 0, bg: '', text: '', icon: 'book', code: '' };
+
                                             return (
                                                 <tr key={task.id} onClick={() => setSelectedDetailTask(task)} className="hover:bg-gray-50 dark:hover:bg-gray-700/20 cursor-pointer transition-colors">
                                                     <td className="px-6 py-4 font-bold text-gray-900 dark:text-white max-w-[300px] truncate">{task.title}</td>

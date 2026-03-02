@@ -16,10 +16,13 @@ export type CalendarEvent = {
     date: string; // "YYYY-MM-DD"
     startHour: number; // e.g. 8 = 08:00
     durationHours: number; // e.g. 2 = 2 hours
+    startTime: Date;
+    endTime: Date;
     type: CalendarEventType;
     location?: string;
     isUrgent?: boolean;
 };
+
 
 // Color map per event type
 export const EVENT_TYPE_COLORS: Record<CalendarEventType, { bg: string; border: string; text: string; label: string }> = {
@@ -165,12 +168,64 @@ function dayOffset(offset: number): string {
 }
 
 export const MOCK_CALENDAR_EVENTS: CalendarEvent[] = [
-    { id: "e1", title: "Lý học nhóm", date: dayOffset(0), startHour: 8, durationHours: 2, type: "group", location: "Phòng 204" },
-    { id: "e2", title: "Ôn môn Toán", date: dayOffset(1), startHour: 10, durationHours: 2, type: "exam", isUrgent: true },
-    { id: "e3", title: "Tiếng Anh Online", date: dayOffset(1), startHour: 14, durationHours: 2, type: "online", location: "Zoom" },
-    { id: "e4", title: "Project Java", date: dayOffset(2), startHour: 8, durationHours: 3, type: "project", location: "Library" },
-    { id: "e5", title: "Deadline Assignment", date: dayOffset(4), startHour: 9, durationHours: 1, type: "deadline", isUrgent: true, location: "Edunext" },
+    {
+        id: "e1",
+        title: "Lý học nhóm",
+        date: dayOffset(0),
+        startHour: 8,
+        durationHours: 2,
+        startTime: new Date(new Date().setHours(8, 0, 0, 0)),
+        endTime: new Date(new Date().setHours(10, 0, 0, 0)),
+        type: "group",
+        location: "Phòng 204"
+    },
+    {
+        id: "e2",
+        title: "Ôn môn Toán",
+        date: dayOffset(1),
+        startHour: 10,
+        durationHours: 2,
+        startTime: new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(10, 0, 0, 0)),
+        endTime: new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(12, 0, 0, 0)),
+        type: "exam",
+        isUrgent: true
+    },
+    {
+        id: "e3",
+        title: "Tiếng Anh Online",
+        date: dayOffset(1),
+        startHour: 14,
+        durationHours: 2,
+        startTime: new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(14, 0, 0, 0)),
+        endTime: new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(16, 0, 0, 0)),
+        type: "online",
+        location: "Zoom"
+    },
+    {
+        id: "e4",
+        title: "Project Java",
+        date: dayOffset(2),
+        startHour: 8,
+        durationHours: 3,
+        startTime: new Date(new Date(new Date().setDate(new Date().getDate() + 2)).setHours(8, 0, 0, 0)),
+        endTime: new Date(new Date(new Date().setDate(new Date().getDate() + 2)).setHours(11, 0, 0, 0)),
+        type: "project",
+        location: "Library"
+    },
+    {
+        id: "e5",
+        title: "Deadline Assignment",
+        date: dayOffset(4),
+        startHour: 9,
+        durationHours: 1,
+        startTime: new Date(new Date(new Date().setDate(new Date().getDate() + 4)).setHours(9, 0, 0, 0)),
+        endTime: new Date(new Date(new Date().setDate(new Date().getDate() + 4)).setHours(10, 0, 0, 0)),
+        type: "deadline",
+        isUrgent: true,
+        location: "Edunext"
+    },
 ];
+
 
 export const MOCK_LESSONS: Lesson[] = [
     { id: "l1", subjectId: "s1", title: "Chương 4 – Đạo hàm", type: "video", score: 8.5 },

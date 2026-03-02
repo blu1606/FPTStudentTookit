@@ -60,11 +60,12 @@ export function TasksProvider({ children }: { children: ReactNode }) {
             }
 
             try {
-                const { data, error } = await supabase
-                    .from("tasks")
+                const { data, error } = await (supabase
+                    .from("tasks") as any)
                     .select("*")
                     .eq("user_id", user.id)
                     .order("created_at", { ascending: false });
+
 
                 if (error) throw error;
 
@@ -110,15 +111,16 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { data, error } = await supabase.from("tasks").insert({
+            const { data, error } = await (supabase.from("tasks") as any).insert({
                 user_id: user.id,
                 title: task.title,
                 subject_id: task.subjectId,
                 priority: task.priority,
                 deadline: task.deadline.toISOString(),
                 status: task.status,
-                description: task.description,
+                description: task.description ?? null,
             }).select().single();
+
 
             if (error) throw error;
 
@@ -153,18 +155,19 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { error } = await supabase
-                .from("tasks")
+            const { error } = await (supabase
+                .from("tasks") as any)
                 .update({
                     title: updatedTask.title,
                     subject_id: updatedTask.subjectId,
                     priority: updatedTask.priority,
                     deadline: updatedTask.deadline.toISOString(),
                     status: updatedTask.status,
-                    description: updatedTask.description,
+                    description: updatedTask.description ?? null,
                 })
                 .eq("id", updatedTask.id)
                 .eq("user_id", user.id);
+
 
             if (error) throw error;
             // Optimistic UI update
@@ -185,11 +188,12 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { error } = await supabase
-                .from("tasks")
+            const { error } = await (supabase
+                .from("tasks") as any)
                 .delete()
                 .eq("id", taskId)
                 .eq("user_id", user.id);
+
 
             if (error) throw error;
             // Optimistic UI update

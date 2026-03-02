@@ -49,19 +49,21 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
 
             try {
                 // Fetch Subjects
-                const { data: subjectData, error: subErr } = await supabase
-                    .from("subjects")
+                const { data: subjectData, error: subErr } = await (supabase
+                    .from("subjects") as any)
                     .select("*")
                     .eq("user_id", user.id);
+
 
                 if (subErr) throw subErr;
 
                 // Fetch Lessons
-                const { data: lessonData, error: lesErr } = await supabase
-                    .from("lessons")
+                const { data: lessonData, error: lesErr } = await (supabase
+                    .from("lessons") as any)
                     .select("*")
                     .eq("user_id", user.id)
                     .order("created_at", { ascending: false });
+
 
                 if (lesErr) throw lesErr;
 
@@ -90,12 +92,13 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
                         return {
                             id: s.id,
                             name: s.name,
-                            count: count,
-                            colorClass: s.color_class || "text-blue-600",
-                            bgColorClass: s.color_class ? s.color_class.replace('text-', 'bg-') : "bg-blue-600",
+                            code: s.code || "",
+                            bg: s.color_class ? s.color_class.replace('text-', 'bg-').replace('600', '100') + " dark:bg-gray-800" : "bg-orange-50 dark:bg-orange-900/10",
+                            text: s.color_class || "text-primary",
                             icon: s.icon || "book",
                             progress: progress,
                         };
+
                     });
                     setSubjects(mappedSubjects);
                 } else {
@@ -122,15 +125,16 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { data, error } = await supabase.from("lessons").insert({
+            const { data, error } = await (supabase.from("lessons") as any).insert({
                 user_id: user.id,
                 subject_id: lesson.subjectId,
                 title: lesson.title,
                 type: lesson.type,
-                score: lesson.score,
-                notes: lesson.notes,
+                score: lesson.score ?? null,
+                notes: lesson.notes ?? null,
                 completed_at: lesson.completed_at || new Date().toISOString(),
             }).select().single();
+
 
             if (error) throw error;
 
@@ -157,12 +161,13 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
             const newSubject: Subject = {
                 id: `s-${Date.now()}`,
                 name,
-                count: 0,
-                colorClass: "text-blue-600",
-                bgColorClass: "bg-blue-600",
+                code,
+                bg: "bg-blue-50 dark:bg-blue-900/10",
+                text: "text-blue-500",
                 icon: "book",
                 progress: 0,
             };
+
             setSubjects((prev) => [...prev, newSubject]);
             return newSubject;
         }
@@ -170,13 +175,14 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
         if (!user) return null;
 
         try {
-            const { data, error } = await supabase.from("subjects").insert({
+            const { data, error } = await (supabase.from("subjects") as any).insert({
                 user_id: user.id,
                 name,
-                code,
+                code: code ?? null,
                 color_class: "text-primary",
                 icon: "book"
             }).select().single();
+
 
             if (error) throw error;
 
@@ -184,12 +190,13 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
                 const newSubject: Subject = {
                     id: data.id,
                     name: data.name,
-                    count: 0, // No lessons initially
-                    colorClass: data.color_class || "text-primary",
-                    bgColorClass: data.color_class ? data.color_class.replace('text-', 'bg-') : "bg-primary",
+                    code: data.code || "",
+                    bg: data.color_class ? data.color_class.replace('text-', 'bg-').replace('600', '100') + " dark:bg-gray-800" : "bg-orange-50 dark:bg-orange-900/10",
+                    text: data.color_class || "text-primary",
                     icon: data.icon || "book",
                     progress: 0,
                 };
+
                 setSubjects((prev) => [...prev, newSubject]);
                 return newSubject;
             }
@@ -209,11 +216,12 @@ export function AcademicProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { error } = await supabase
-                .from("lessons")
+            const { error } = await (supabase
+                .from("lessons") as any)
                 .delete()
                 .eq("id", lessonId)
                 .eq("user_id", user.id);
+
 
             if (error) throw error;
             setLessons((prev) => prev.filter((l) => l.id !== lessonId));

@@ -125,11 +125,13 @@ export default function AcademicSection() {
                                         <div key={subject.id} className="group cursor-pointer">
                                             <div className="flex justify-between text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                                                 <span>{subject.name}</span>
-                                                <span className={`${subject.colorClass} font-extrabold flex items-center bg-transparent px-0`}><span className="material-icons-round text-[10px] mr-1">{subject.progress >= 80 ? 'arrow_upward' : 'remove'}</span> {subject.progress / 10}</span>
+                                                <span className={`${subject.text} font-extrabold flex items-center bg-transparent px-0`}><span className="material-icons-round text-[10px] mr-1">{subject.progress >= 80 ? 'arrow_upward' : 'remove'}</span> {subject.progress / 10}</span>
+
                                             </div>
                                             <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                                                 <div
-                                                    className={`${subject.bgColorClass} h-2 rounded-full transition-all duration-700 ease-out`}
+                                                    className={`${subject.bg} h-2 rounded-full transition-all duration-700 ease-out`}
+
                                                     style={{ width: `${subject.progress}%` }}
                                                 ></div>
                                             </div>

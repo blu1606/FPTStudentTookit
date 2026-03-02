@@ -30,15 +30,23 @@ export function CalendarAddEventModal({ isOpen, defaultDate, onClose, onAddEvent
         e.preventDefault();
         if (!title.trim()) return;
 
+        const start = new Date(`${date}T${String(startHour).padStart(2, "0")}:00:00`);
+        const end = new Date(start.getTime() + duration * 60 * 60 * 1000);
+
         const newEvent: CalendarEvent = {
+
             id: `e-${Date.now()}`,
             title: title.trim(),
             date,
             startHour,
             durationHours: duration,
+            startTime: start,
+            endTime: end,
+
             type,
             location: location.trim() || undefined,
         };
+
         console.log("[Modal] handleSubmit triggered! Submitting newEvent:", newEvent);
         onAddEvent(newEvent);
         // Reset form

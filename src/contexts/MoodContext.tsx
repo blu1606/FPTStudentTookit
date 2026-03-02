@@ -54,11 +54,12 @@ export function MoodProvider({ children }: { children: React.ReactNode }) {
                     return;
                 }
 
-                const { data, error } = await supabase
-                    .from("mood_entries")
+                const { data, error } = await (supabase
+                    .from("mood_entries") as any)
                     .select("*")
                     .eq("user_id", user.id)
                     .order("recorded_at", { ascending: false });
+
 
                 if (error) throw error;
                 setMoodEntries(data || []);
@@ -76,11 +77,12 @@ export function MoodProvider({ children }: { children: React.ReactNode }) {
     const addMoodEntry = async (entry: Omit<MoodEntry, "id" | "user_id" | "recorded_at">) => {
         if (!user) return;
         try {
-            const { data, error } = await supabase
-                .from("mood_entries")
+            const { data, error } = await (supabase
+                .from("mood_entries") as any)
                 .insert([{ ...entry, user_id: user.id }])
                 .select()
                 .single();
+
 
             if (error) throw error;
             setMoodEntries(prev => [data, ...prev]);

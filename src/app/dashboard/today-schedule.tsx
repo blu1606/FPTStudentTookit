@@ -34,7 +34,7 @@ export default function TodaySchedule() {
                                 <span className="text-xs font-bold text-gray-400">{format(event.startTime, 'HH:mm')}</span>
                                 <div className="h-full w-0.5 bg-gray-200 dark:bg-gray-700 my-2 group-last:hidden"></div>
                             </div>
-                            <div className={`flex-1 ${colorData.bgClass} border-l-4 ${colorData.borderClass} rounded-r-xl p-4 hover:shadow-md transition-all duration-200 cursor-pointer transform hover:-translate-y-0.5`}>
+                            <div className={`flex-1 ${colorData.bg} border-l-4 ${colorData.border} rounded-r-xl p-4 hover:shadow-md transition-all duration-200 cursor-pointer transform hover:-translate-y-0.5`}>
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h4 className="font-bold text-gray-800 dark:text-white text-lg">{event.title}</h4>
@@ -43,11 +43,12 @@ export default function TodaySchedule() {
                                             {format(event.startTime, 'HH:mm')} - {format(event.endTime, 'HH:mm')}
                                         </p>
                                     </div>
-                                    <span className={`${colorData.bgClass} ${colorData.textClass} text-xs font-bold px-2 py-1 rounded-md`}>
+                                    <span className={`${colorData.bg} ${colorData.text} text-xs font-bold px-2 py-1 rounded-md`}>
                                         {statusText}
                                     </span>
                                 </div>
                             </div>
+
                         </div>
                     );
                 }) : (

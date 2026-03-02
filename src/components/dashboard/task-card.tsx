@@ -65,9 +65,10 @@ export function TaskCard({ task, subject, index, onClick }: TaskCardProps) {
                                         <span className="material-icons-round text-lg">check_circle</span>
                                     </div>
                                 ) : (
-                                    <div className={`w-8 h-8 rounded-lg ${subject.colorClass.replace('text-', 'bg-').replace('-600', '-100')} dark:bg-gray-700 ${subject.colorClass} flex items-center justify-center`}>
+                                    <div className={`w-8 h-8 rounded-lg ${subject.bg} ${subject.text} flex items-center justify-center`}>
                                         <span className="material-icons-round text-lg">{subject.icon}</span>
                                     </div>
+
                                 )}
                                 <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                                     {subject.name}

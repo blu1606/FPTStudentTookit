@@ -133,6 +133,7 @@ export default function PlannerSection({ pendingAction, clearAction }: PlannerSe
                             <span className={`w-3 h-3 rounded-full ${val.border.replace("border-", "bg-")}`} />
                             {val.label}
                         </div>
+
                     ))}
                 </div>
             </div>
@@ -303,6 +304,7 @@ export default function PlannerSection({ pendingAction, clearAction }: PlannerSe
                                     duration: `${e.durationHours}h`,
                                     colorClass: `${EVENT_TYPE_COLORS[e.type].bg} ${EVENT_TYPE_COLORS[e.type].text}`,
                                 }));
+
                                 return (
                                     <div key={index} onClick={() => openAddModal(dateStr)} className="cursor-pointer">
                                         <CalendarDay

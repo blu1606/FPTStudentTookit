@@ -40,7 +40,13 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                     const saved = localStorage.getItem("planner_events");
                     if (saved) {
                         try {
-                            setEvents(JSON.parse(saved));
+                            const parsed = JSON.parse(saved);
+                            const hydrated = parsed.map((e: any) => ({
+                                ...e,
+                                startTime: new Date(e.startTime),
+                                endTime: new Date(e.endTime)
+                            }));
+                            setEvents(hydrated);
                         } catch (e) {
                             console.error("Failed to parse local events", e);
                             setEvents(MOCK_CALENDAR_EVENTS);
@@ -50,6 +56,7 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                     }
                     setIsLoading(false);
                 }, 500);
+
                 return;
             }
 
@@ -60,11 +67,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
             }
 
             try {
-                const { data, error } = await supabase
-                    .from("events")
+                const { data, error } = await (supabase
+                    .from("events") as any)
                     .select("*")
                     .eq("user_id", user.id)
                     .order("start_time", { ascending: true });
+
 
                 console.log("[fetchEvents] Supabase Response -> Error:", error, "| Data array length:", data?.length);
 
@@ -90,9 +98,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                             date: format(start, "yyyy-MM-dd"),
                             startHour: start.getHours() + (start.getMinutes() / 60),
                             durationHours: durationHours,
+                            startTime: start,
+                            endTime: end,
                             type: clientType as CalendarEventType,
                             location: d.location || undefined,
                         };
+
                     });
                     setEvents(mappedEvents);
                 }
@@ -146,7 +157,8 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
             };
             console.log("[addEvent] PAYLOAD TO SUPABASE:", payload);
 
-            const { data, error } = await supabase.from("events").insert(payload).select().single();
+            const { data, error } = await (supabase.from("events") as any).insert(payload).select().single();
+
 
             console.log("[addEvent] Supabase Insert Response -> Error:", error, "| Data:", data);
 
@@ -170,9 +182,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                     date: format(start, "yyyy-MM-dd"),
                     startHour: start.getHours() + (start.getMinutes() / 60),
                     durationHours: (end.getTime() - start.getTime()) / (1000 * 60 * 60),
+                    startTime: start,
+                    endTime: end,
                     type: clientType as CalendarEventType,
                     location: data.location || undefined,
                 };
+
                 setEvents((prev) => [...prev, newEvent]);
             }
         } catch (err) {
@@ -204,8 +219,8 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                 dbType = dbType.charAt(0).toUpperCase() + dbType.slice(1);
             }
 
-            const { error } = await supabase
-                .from("events")
+            const { error } = await (supabase
+                .from("events") as any)
                 .update({
                     title: updatedEvent.title,
                     type: dbType,
@@ -215,6 +230,7 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
                 })
                 .eq("id", updatedEvent.id)
                 .eq("user_id", user.id);
+
 
             if (error) throw error;
             setEvents((prev) =>
@@ -234,11 +250,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
         if (!user) return;
 
         try {
-            const { error } = await supabase
-                .from("events")
+            const { error } = await (supabase
+                .from("events") as any)
                 .delete()
                 .eq("id", eventId)
                 .eq("user_id", user.id);
+
 
             if (error) throw error;
             setEvents((prev) => prev.filter((e) => e.id !== eventId));
