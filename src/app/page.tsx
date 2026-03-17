@@ -108,9 +108,6 @@ export default function Home() {
                 >
                   Bắt đầu miễn phí
                 </Link>
-                <button className="flex items-center justify-center h-14 px-10 rounded-xl bg-white dark:bg-white/10 border border-[#eadbcd] dark:border-white/10 text-[#1d140c] dark:text-white text-lg font-bold hover:bg-[#fcfaf8] dark:hover:bg-white/5 transition-colors">
-                  Xem Demo
-                </button>
               </div>
               <div className="flex items-center gap-4 text-sm text-[#8c6b4a] dark:text-gray-400 mt-4">
                 <div className="flex -space-x-3">
